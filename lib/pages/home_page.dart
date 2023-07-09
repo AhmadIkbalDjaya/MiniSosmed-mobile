@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mini_sosmed/components/create_post_box.dart';
 import 'package:mini_sosmed/components/post_box.dart';
 import 'package:mini_sosmed/pages/login_page.dart';
+import 'package:mini_sosmed/pages/profile_page.dart';
 
 class HomaPage extends StatefulWidget {
   HomaPage({super.key});
@@ -84,7 +85,7 @@ class _HomaPageState extends State<HomaPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginPage(),
+                              builder: (context) => HomaPage(),
                             ),
                           );
                         },
@@ -112,7 +113,7 @@ class _HomaPageState extends State<HomaPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginPage(),
+                              builder: (context) => ProfilePage(),
                             ),
                           );
                         },
@@ -169,6 +170,7 @@ class _HomaPageState extends State<HomaPage> {
                 preferredSize: Size.fromHeight(175),
               )
             : null,
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
