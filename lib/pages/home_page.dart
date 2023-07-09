@@ -172,12 +172,14 @@ class _HomaPageState extends State<HomaPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-        child: ListView(
-          children: [
-            PostBox(),
-            PostBox(),
-            PostBox(),
-          ],
+        child: ListView.builder(
+          itemCount: 5 + 1,
+          itemBuilder: (context, index) {
+            if (index == 0) {
+              return CreatePostBox();
+            }
+            return PostBox();
+          },
         ),
       ),
     );

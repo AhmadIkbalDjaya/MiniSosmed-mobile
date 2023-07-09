@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/components/comment_box.dart';
 
-class PostBox extends StatelessWidget {
-  const PostBox({super.key});
+class PostBox extends StatefulWidget {
+  PostBox({super.key});
+
+  @override
+  State<PostBox> createState() => _PostBoxState();
+}
+
+class _PostBoxState extends State<PostBox> {
+  bool showComent = false;
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +129,7 @@ class PostBox extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                 child: Text(
-                  "body",
+                  "body body body body body body body body body body body body body body body body body body body body body body ",
                   style: TextStyle(
                     fontSize: 14,
                   ),
@@ -142,15 +150,83 @@ class PostBox extends StatelessWidget {
                     Text("100 Like"),
                   ],
                 ),
-                Row(
-                  children: [
-                    Icon(Icons.comment_outlined),
-                    Text("100 Comment"),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      showComent = !showComent;
+                    });
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.comment_outlined),
+                      Text("100 Comment"),
+                    ],
+                  ),
                 ),
               ],
             ),
-          )
+          ),
+          // comment
+          Visibility(
+            visible: showComent,
+            child: Container(
+              height: 250,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 250,
+                      child: ListView(
+                        children: [
+                          CommentBox(),
+                          CommentBox(),
+                          CommentBox(),
+                        ],
+                      ),
+                    ),
+                  ),
+                  // comment form
+                  Container(
+                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: SizedBox(
+                            height: 30,
+                            child: TextField(
+                              // keyboardType: TextInputType.
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0,
+                                  horizontal: 15,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                hintText: "Tulis Komentar",
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        SizedBox(
+                          height: 30,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text("Comen"),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
