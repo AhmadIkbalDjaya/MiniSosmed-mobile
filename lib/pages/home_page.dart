@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/components/create_post_box.dart';
+import 'package:mini_sosmed/components/post_box.dart';
 import 'package:mini_sosmed/pages/login_page.dart';
 
 class HomaPage extends StatefulWidget {
@@ -9,7 +11,7 @@ class HomaPage extends StatefulWidget {
 }
 
 class _HomaPageState extends State<HomaPage> {
-  bool showBottomAppBar = true;
+  bool showBottomAppBar = false;
 
   @override
   Widget build(BuildContext context) {
@@ -167,6 +169,16 @@ class _HomaPageState extends State<HomaPage> {
                 preferredSize: Size.fromHeight(175),
               )
             : null,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+        child: ListView(
+          children: [
+            PostBox(),
+            PostBox(),
+            PostBox(),
+          ],
+        ),
       ),
     );
   }
