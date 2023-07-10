@@ -41,4 +41,38 @@ class PostContoller {
       return false;
     }
   }
+
+  Future<dynamic> update(String id, String body) async {
+    var url = Uri.parse("${link}/post/${id}");
+    var bodyUpdate = {"body": body};
+    var response = await http.put(url, body: bodyUpdate, headers: {
+      HttpHeaders.acceptHeader: "application/json",
+      HttpHeaders.authorizationHeader:
+          "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+    });
+    if (response.statusCode == 200) {
+      print(response.body);
+      return true;
+    } else {
+      print(response.body);
+      return false;
+    }
+  }
+
+  Future<void> delete(String id) async {
+    var url = Uri.parse("${link}/post/${id}");
+    var response = await http.delete(url, headers: {
+      HttpHeaders.acceptHeader: "application/json",
+      HttpHeaders.authorizationHeader:
+          "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+    });
+    if (response.statusCode == 200) {
+      print("ok");
+      // print(response.body);
+      // print(url);
+    } else {
+      print("gagal");
+      // throw Exception("Failed to delete:");
+    }
+  }
 }

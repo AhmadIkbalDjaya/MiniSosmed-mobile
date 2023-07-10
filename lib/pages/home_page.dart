@@ -36,6 +36,8 @@ class _HomaPageState extends State<HomaPage> {
     }
   }
 
+  
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -210,7 +212,7 @@ class _HomaPageState extends State<HomaPage> {
               // return CreatePostBox();
             } else {
               final post = posts[index - 1];
-              return PostBox(post: post);
+              return PostBox(post: post, fetchPost: fetchPost);
             }
           },
         ),
