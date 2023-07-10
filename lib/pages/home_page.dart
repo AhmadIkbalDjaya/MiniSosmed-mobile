@@ -3,6 +3,7 @@ import 'package:mini_sosmed/components/create_post_box.dart';
 import 'package:mini_sosmed/components/post_box.dart';
 import 'package:mini_sosmed/pages/login_page.dart';
 import 'package:mini_sosmed/pages/profile_page.dart';
+import 'package:mini_sosmed/pages/search_page.dart';
 
 class HomaPage extends StatefulWidget {
   HomaPage({super.key});
@@ -69,7 +70,14 @@ class _HomaPageState extends State<HomaPage> {
                           ),
                           SizedBox(width: 5),
                           OutlinedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SearchPage(),
+                                ),
+                              );
+                            },
                             child: Text("Search"),
                             style: OutlinedButton.styleFrom(
                               foregroundColor: Colors.white, // Warna teks putih

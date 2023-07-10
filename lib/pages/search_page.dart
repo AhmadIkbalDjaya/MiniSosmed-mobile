@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_sosmed/components/person_box.dart';
+import 'package:mini_sosmed/controller/UserController.dart';
+import 'package:mini_sosmed/model/users.dart';
 import 'package:mini_sosmed/pages/home_page.dart';
 import 'package:mini_sosmed/pages/login_page.dart';
 import 'package:mini_sosmed/pages/profile_page.dart';
@@ -13,7 +15,27 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   bool showBottomAppBar = false;
+  final controller = UserContoller();
+  List<Users> users = [];
+
+  final searchController = TextEditingController();
   @override
+  void initState() {
+    super.initState();
+    // fetchData();
+  }
+
+  Future<void> searchUser(String query) async {
+    try {
+      List<Users> fetchUsers = await controller.searchUser(query);
+      setState(() {
+        users = fetchUsers;
+      });
+    } catch (error) {
+      print('Error fetching data: $error');
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -51,6 +73,12 @@ class _SearchPageState extends State<SearchPage> {
                             child: SizedBox(
                               height: 35,
                               child: TextField(
+                                onChanged: (value) {
+                                  // setState(() {
+                                  //   search = searchController.value.toString();
+                                  // });
+                                },
+                                controller: searchController,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                     horizontal: 15,
@@ -68,7 +96,14 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                           SizedBox(width: 5),
                           OutlinedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              print(searchController.text);
+                              setState(() {
+                                searchUser(searchController.text);
+                              });
+                              // print(searchController.value);
+                              // searchController(value);
+                            },
                             child: Text("Search"),
                             style: OutlinedButton.styleFrom(
                               foregroundColor: Colors.white, // Warna teks putih
@@ -171,12 +206,15 @@ class _SearchPageState extends State<SearchPage> {
             : null,
         automaticallyImplyLeading: false,
       ),
-      body: ListView(
-        children: [
-          PersonBox(),
-          PersonBox(),
-          PersonBox(),
-        ],
+      body: ListView.builder(
+        itemCount: users.length,
+        itemBuilder: (context, index) {
+          // print(users);
+          final user = users[index];
+          // return Text("${user.username}");
+          return PersonBox(user: user);
+          // return Coba(user: user);
+        },
       ),
     );
   }

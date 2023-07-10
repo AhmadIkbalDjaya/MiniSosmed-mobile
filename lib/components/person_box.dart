@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/model/users.dart';
 
 class PersonBox extends StatelessWidget {
-  const PersonBox({
-    super.key,
-  });
-
+  const PersonBox({super.key, required this.user});
+  final Users user;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +31,7 @@ class PersonBox extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Ahmad Ikbal Djaya",
+                      "${user.name}",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
