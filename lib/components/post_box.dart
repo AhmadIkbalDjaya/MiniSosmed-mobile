@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mini_sosmed/components/comment_box.dart';
+import 'package:mini_sosmed/model/posts.dart';
 
 class PostBox extends StatefulWidget {
-  PostBox({super.key});
+  const PostBox({super.key, required this.post});
+  final Posts post;
 
   @override
   State<PostBox> createState() => _PostBoxState();
@@ -13,6 +15,7 @@ class _PostBoxState extends State<PostBox> {
 
   @override
   Widget build(BuildContext context) {
+    final Posts post = widget.post;
     return Container(
       margin: EdgeInsets.symmetric(vertical: 15),
       decoration: BoxDecoration(
@@ -42,8 +45,14 @@ class _PostBoxState extends State<PostBox> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Ahmad Ikbal Djaya"),
-                        Text("15 hours ago"),
+                        Text("${post.name}"),
+                        Text(
+                          "${post.updatedAt}",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -157,13 +166,13 @@ class _PostBoxState extends State<PostBox> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                 child: Text(
-                  "body body body body body body body body body body body body body body body body body body body body body body ",
+                  "${post.body}",
                   style: TextStyle(
                     fontSize: 14,
                   ),
                 ),
               ),
-              Image.network("https://picsum.photos/536/354"),
+              post.image != null ? Image.network("${post.image}") : Container(),
             ],
           ),
           // like comment
@@ -174,8 +183,12 @@ class _PostBoxState extends State<PostBox> {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.thumb_up_alt_outlined),
-                    Text("100 Like"),
+                    Icon(
+                      post.hasLike == 1
+                          ? Icons.thumb_up
+                          : Icons.thumb_up_alt_outlined,
+                    ),
+                    Text("${post.likeCount} Like"),
                   ],
                 ),
                 GestureDetector(
@@ -187,7 +200,7 @@ class _PostBoxState extends State<PostBox> {
                   child: Row(
                     children: [
                       Icon(Icons.comment_outlined),
-                      Text("100 Comment"),
+                      Text("${post.commentCount} Comment"),
                     ],
                   ),
                 ),
@@ -198,19 +211,34 @@ class _PostBoxState extends State<PostBox> {
           Visibility(
             visible: showComent,
             child: Container(
-              height: 250,
+              height: 200,
               child: Column(
                 children: [
                   Expanded(
                     child: Container(
                       height: 250,
                       child: ListView(
-                        children: [
-                          CommentBox(),
-                          CommentBox(),
-                          CommentBox(),
-                        ],
+                        children: post.comment
+                                ?.map((comment) => CommentBox(comment: comment))
+                                .toList() ??
+                            [],
                       ),
+
+                      // child: ListView.builder(
+                      //   itemCount: post.commentCount,
+                      //   itemBuilder: (context, index) {
+                      //     final comment = post.comment[index];
+                      //     return CommentBox(comment: comment);
+                      //   },
+                      // ),
+
+                      // ListView(
+                      //   children: [
+                      //     CommentBox(),
+                      //     CommentBox(),
+                      //     CommentBox(),
+                      //   ],
+                      // ),
                     ),
                   ),
                   // comment form

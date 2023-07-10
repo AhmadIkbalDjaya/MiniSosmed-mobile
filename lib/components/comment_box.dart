@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/model/posts.dart';
 
 class CommentBox extends StatelessWidget {
-  const CommentBox({
-    super.key,
-  });
+  const CommentBox({super.key, required this.comment});
+  final Comment comment;
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +28,14 @@ class CommentBox extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Ahmad Ikbal Djaya",
+                        "${comment.name}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        "ini adalah isi dari komentar postingan di atas  isi dari komentar postingan di atas",
-                        // maxLines: 2,
+                        "${comment.body}",
                         style: TextStyle(),
                       ),
                     ],
@@ -45,9 +44,9 @@ class CommentBox extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(
-                    "1 day ago",
+                    "${comment.createdAt}",
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 10,
                       color: Colors.grey[700],
                     ),
                   ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mini_sosmed/components/create_post_box.dart';
 import 'package:mini_sosmed/components/post_box.dart';
+import 'package:mini_sosmed/controller/PostContoller.dart';
+import 'package:mini_sosmed/model/posts.dart';
 import 'package:mini_sosmed/pages/login_page.dart';
 import 'package:mini_sosmed/pages/profile_page.dart';
 import 'package:mini_sosmed/pages/search_page.dart';
@@ -14,8 +16,26 @@ class HomaPage extends StatefulWidget {
 
 class _HomaPageState extends State<HomaPage> {
   bool showBottomAppBar = false;
+  final postController = PostContoller();
+  List<Posts> posts = [];
 
   @override
+  void initState() {
+    super.initState();
+    fetchPost();
+  }
+
+  Future<void> fetchPost() async {
+    try {
+      List<Posts> fetchPost = await postController.get();
+      setState(() {
+        posts = fetchPost;
+      });
+    } catch (error) {
+      print('Error fetching data: $error');
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -183,12 +203,14 @@ class _HomaPageState extends State<HomaPage> {
       body: Padding(
         padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
         child: ListView.builder(
-          itemCount: 5 + 1,
+          itemCount: posts.length + 1,
           itemBuilder: (context, index) {
             if (index == 0) {
               return CreatePostBox();
+            } else {
+              final post = posts[index - 1];
+              return PostBox(post: post);
             }
-            return PostBox();
           },
         ),
       ),

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // color: Color.fromARGB(255, 240, 242, 245),
       color: Colors.grey,
-      home: SearchPage(),
+      home: HomaPage(),
     );
   }
 }
