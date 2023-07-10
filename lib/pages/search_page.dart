@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:mini_sosmed/components/about_us.dart';
-import 'package:mini_sosmed/components/create_post_box.dart';
-import 'package:mini_sosmed/components/post_box.dart';
-import 'package:mini_sosmed/components/profile_widget.dart';
+import 'package:mini_sosmed/components/person_box.dart';
 import 'package:mini_sosmed/pages/home_page.dart';
 import 'package:mini_sosmed/pages/login_page.dart';
+import 'package:mini_sosmed/pages/profile_page.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<SearchPage> createState() => _SearchPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _SearchPageState extends State<SearchPage> {
   bool showBottomAppBar = false;
   @override
   Widget build(BuildContext context) {
@@ -175,184 +173,9 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: ListView(
         children: [
-          ProfileWidget(),
-          SizedBox(height: 25),
-          BioBox(),
-          SizedBox(height: 10),
-          AboutUs(),
-          SizedBox(height: 50),
-          CreatePostBox(),
-          PostBox(),
-          PostBox(),
-          PostBox(),
-          PostBox(),
-        ],
-      ),
-    );
-  }
-}
-
-class BioBox extends StatelessWidget {
-  const BioBox({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(5),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 3,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Biodata",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 15),
-          Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 80,
-                      child: Text(
-                        "Name",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 15,
-                      child: Text(
-                        ":",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Ahmad Ikbal Djaya",
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 80,
-                      child: Text(
-                        "Birthday",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 15,
-                      child: Text(
-                        ":",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "2002-08-18",
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 80,
-                      child: Text(
-                        "Gender",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 15,
-                      child: Text(
-                        ":",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Laki-laki",
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 80,
-                      child: Text(
-                        "Address",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 15,
-                      child: Text(
-                        ":",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Belum ditambahkan",
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15),
-              ],
-            ),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(double.infinity, 30),
-            ),
-            onPressed: () {},
-            child: Text("Edit Biodata"),
-          ),
+          PersonBox(),
+          PersonBox(),
+          PersonBox(),
         ],
       ),
     );

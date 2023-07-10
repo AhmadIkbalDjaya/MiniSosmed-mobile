@@ -68,7 +68,8 @@ class _PostBoxState extends State<PostBox> {
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.all(15),
+                              padding: EdgeInsets.only(
+                                  left: 15, right: 15, bottom: 15, top: 10),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 boxShadow: [
@@ -83,12 +84,21 @@ class _PostBoxState extends State<PostBox> {
                                   topRight: Radius.circular(10),
                                 ),
                               ),
-                              height: 120,
+                              height: 135,
                               width: 900,
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
+                                  Container(
+                                    margin: EdgeInsets.only(bottom: 5),
+                                    width: 50,
+                                    height: 5,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
                                   Container(
                                     padding: EdgeInsets.all(8),
                                     decoration: BoxDecoration(
