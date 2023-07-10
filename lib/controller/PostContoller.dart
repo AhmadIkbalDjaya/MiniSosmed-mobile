@@ -75,4 +75,20 @@ class PostContoller {
       // throw Exception("Failed to delete:");
     }
   }
+
+  Future<dynamic> like(String id) async {
+    var url = Uri.parse("${link}/like/${id}");
+    var response = await http.get(url, headers: {
+      HttpHeaders.acceptHeader: "application/json",
+      HttpHeaders.authorizationHeader:
+          "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+    });
+    return response.body;
+    // print(url);
+    // if (response.statusCode == 200) {
+    //   return response.body;
+    // } else {
+    //   return response.body;
+    // }
+  }
 }

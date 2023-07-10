@@ -37,6 +37,16 @@ class _PostBoxState extends State<PostBox> {
     }
   }
 
+  Future<bool> likePost(String id) async {
+    try {
+      await postController.like(id);
+      // widget.fetchPost();
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -351,15 +361,22 @@ class _PostBoxState extends State<PostBox> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Row(
-                  children: [
-                    Icon(
-                      post.hasLike == 1
-                          ? Icons.thumb_up
-                          : Icons.thumb_up_alt_outlined,
-                    ),
-                    Text("${post.likeCount} Like"),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    // print("tes");
+                    likePost(post.id.toString());
+                    widget.fetchPost();
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        post.hasLike == 1
+                            ? Icons.thumb_up
+                            : Icons.thumb_up_alt_outlined,
+                      ),
+                      Text(" ${post.likeCount} Like"),
+                    ],
+                  ),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -370,7 +387,7 @@ class _PostBoxState extends State<PostBox> {
                   child: Row(
                     children: [
                       Icon(Icons.comment_outlined),
-                      Text("${post.commentCount} Comment"),
+                      Text(" ${post.commentCount} Comment"),
                     ],
                   ),
                 ),
