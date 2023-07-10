@@ -1,9 +1,36 @@
-import 'package:flutter/material.dart';
+import 'dart:js';
 
-class CreatePostBox extends StatelessWidget {
-  const CreatePostBox({
-    super.key,
-  });
+import 'package:flutter/material.dart';
+import 'package:mini_sosmed/controller/PostContoller.dart';
+import 'package:mini_sosmed/pages/home_page.dart';
+
+class CreatePostBox extends StatefulWidget {
+  CreatePostBox({super.key, required this.fetchPost});
+  final Function fetchPost;
+
+  @override
+  State<CreatePostBox> createState() => _CreatePostBoxState();
+}
+
+class _CreatePostBoxState extends State<CreatePostBox> {
+  final postContoller = PostContoller();
+
+  final bodyController = TextEditingController();
+
+  Future<bool> storePost() async {
+    String body = bodyController.text;
+
+    bodyController.clear();
+
+    try {
+      bool result = await postContoller.post(body);
+      print(result);
+      return true;
+    } catch (error) {
+      print('Error while post: $error');
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +110,7 @@ class CreatePostBox extends StatelessWidget {
                               Text("Apa yang sedang anda pikirkan?"),
                               SizedBox(height: 10),
                               TextField(
+                                controller: bodyController,
                                 keyboardType: TextInputType.multiline,
                                 maxLines: null,
                                 decoration: InputDecoration(
@@ -113,7 +141,11 @@ class CreatePostBox extends StatelessWidget {
                                   ),
                                   SizedBox(width: 10),
                                   ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      storePost();
+                                      Navigator.of(context).pop();
+                                      widget.fetchPost();
+                                    },
                                     child: Text("Posting"),
                                   ),
                                 ],

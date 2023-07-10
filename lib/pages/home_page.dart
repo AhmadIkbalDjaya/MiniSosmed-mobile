@@ -206,7 +206,8 @@ class _HomaPageState extends State<HomaPage> {
           itemCount: posts.length + 1,
           itemBuilder: (context, index) {
             if (index == 0) {
-              return CreatePostBox();
+              return CreatePostBox(fetchPost: fetchPost);
+              // return CreatePostBox();
             } else {
               final post = posts[index - 1];
               return PostBox(post: post);

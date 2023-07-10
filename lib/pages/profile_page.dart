@@ -181,7 +181,7 @@ class _ProfilePageState extends State<ProfilePage> {
           SizedBox(height: 10),
           AboutUs(),
           SizedBox(height: 50),
-          CreatePostBox(),
+          // CreatePostBox(),
           // PostBox(),
           // PostBox(),
           // PostBox(),
