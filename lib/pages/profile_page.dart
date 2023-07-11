@@ -25,9 +25,10 @@ class _ProfilePageState extends State<ProfilePage> {
   // final String username = widget.username;
   List<Posts> posts = [];
 
-  Future<void> fetchUserPost({String username = 'ahmad-ikbal-djaya'}) async {
+  Future<void> fetchUserPost([String? username]) async {
     try {
-      List<Posts> fetchPost = await userController.postsUser(username);
+      List<Posts> fetchPost =
+          await userController.postsUser(username ?? widget.username);
       setState(() {
         posts = fetchPost;
       });
@@ -40,8 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     fetchProfile(widget.username);
-    // fetchUserPost(widget.username);
-    fetchUserPost(username: widget.username);
+    fetchUserPost(widget.username);
   }
 
   Future<void> fetchProfile(String username) async {
