@@ -53,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
       });
     } catch (e) {
       // print("Error fetching data: $e");
-      // throw Exception("Error fetching data: $e");
+      throw Exception("Error fetching data: $e");
     }
   }
 

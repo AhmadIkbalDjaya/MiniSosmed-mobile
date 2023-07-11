@@ -7,7 +7,8 @@ import 'package:mini_sosmed/pages/login_page.dart';
 import 'package:mini_sosmed/pages/profile_page.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+  SearchPage({super.key, required this.query});
+  String query;
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -17,19 +18,22 @@ class _SearchPageState extends State<SearchPage> {
   bool showBottomAppBar = false;
   final controller = UserContoller();
   List<Users> users = [];
+  // String defQuery = "";
 
   final searchController = TextEditingController();
   @override
   void initState() {
     super.initState();
-    // fetchData();
+    fetchSearchUser();
   }
 
-  Future<void> fetchSearchUser(String query) async {
+  Future<void> fetchSearchUser([String? query]) async {
     try {
-      List<Users> fetchUsers = await controller.searchUser(query);
+      List<Users> fetchUsers =
+          await controller.searchUser(query ?? widget.query);
       setState(() {
         users = fetchUsers;
+        // defQuery = query!;
       });
     } catch (error) {
       print('Error fetching data: $error');
@@ -97,10 +101,22 @@ class _SearchPageState extends State<SearchPage> {
                           SizedBox(width: 5),
                           OutlinedButton(
                             onPressed: () {
-                              print(searchController.text);
-                              setState(() {
-                                fetchSearchUser(searchController.text);
-                              });
+                              // print(searchController.text);
+                              if (searchController.text == '') {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("search wajib di isi"),
+                                    );
+                                  },
+                                );
+                              } else {
+                                setState(() {
+                                  fetchSearchUser(searchController.text);
+                                  widget.query = searchController.text;
+                                });
+                              }
                               // print(searchController.value);
                               // searchController(value);
                             },
@@ -212,7 +228,10 @@ class _SearchPageState extends State<SearchPage> {
           // print(users);
           final user = users[index];
           // return Text("${user.username}");
-          return PersonBox(user: user);
+          return PersonBox(
+            user: user,
+            fetchData: fetchSearchUser,
+          );
           // return Coba(user: user);
         },
       ),

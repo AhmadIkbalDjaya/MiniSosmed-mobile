@@ -1,36 +1,40 @@
 class Users {
   int? id;
-  String? name;
   String? username;
-  String? email;
-  String? createdAt;
-  String? updatedAt;
+  String? name;
+  String? profileImage;
+  int? followers;
+  int? follows;
+  bool? hasFollow;
 
   Users(
       {this.id,
-      this.name,
       this.username,
-      this.email,
-      this.createdAt,
-      this.updatedAt});
+      this.name,
+      this.profileImage,
+      this.followers,
+      this.follows,
+      this.hasFollow});
 
   Users.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['name'];
     username = json['username'];
-    email = json['email'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    name = json['name'];
+    profileImage = json['profile_image'];
+    followers = json['followers'];
+    follows = json['follows'];
+    hasFollow = json['has_follow'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['name'] = this.name;
     data['username'] = this.username;
-    data['email'] = this.email;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    data['name'] = this.name;
+    data['profile_image'] = this.profileImage;
+    data['followers'] = this.followers;
+    data['follows'] = this.follows;
+    data['has_follow'] = this.hasFollow;
     return data;
   }
 }

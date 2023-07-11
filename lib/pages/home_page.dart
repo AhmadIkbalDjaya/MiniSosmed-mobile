@@ -94,7 +94,7 @@ class _HomaPageState extends State<HomaPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SearchPage(),
+                                  builder: (context) => SearchPage(query: 'a',),
                                 ),
                               );
                             },

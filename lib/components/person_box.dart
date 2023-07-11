@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/controller/UserController.dart';
 import 'package:mini_sosmed/model/users.dart';
 
 class PersonBox extends StatelessWidget {
-  const PersonBox({super.key, required this.user});
+  PersonBox({super.key, required this.user, required this.fetchData});
+  final Function fetchData;
   final Users user;
+  final userController = UserContoller();
+
+  Future<dynamic> follow(String username) async {
+    try {
+      await userController.followUser(username);
+    } catch (e) {
+      print("Error deleting Post: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,7 +50,7 @@ class PersonBox extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 5),
-                    Text("46 Pengikut"),
+                    Text("${user.followers} Pengikut"),
                   ],
                 ),
               ),
@@ -46,8 +58,11 @@ class PersonBox extends StatelessWidget {
           ),
           SizedBox(height: 5),
           ElevatedButton(
-            onPressed: () {},
-            child: Text("Follow"),
+            onPressed: () {
+              follow(user.username.toString());
+              fetchData();
+            },
+            child: Text(user.hasFollow == false ? "Follow" : "Unfollow"),
             style: ElevatedButton.styleFrom(
               minimumSize: Size(double.infinity, 35),
             ),

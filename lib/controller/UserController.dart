@@ -36,6 +36,7 @@ class UserContoller {
             "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
       },
     );
+    print(response.body);
     return response;
   }
 
