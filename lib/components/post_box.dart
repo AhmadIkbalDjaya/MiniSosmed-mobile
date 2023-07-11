@@ -418,7 +418,10 @@ class _PostBoxState extends State<PostBox> {
                       height: 250,
                       child: ListView(
                         children: post.comment
-                                ?.map((comment) => CommentBox(comment: comment))
+                                ?.map((comment) => CommentBox(
+                                      comment: comment,
+                                      fetchPost: widget.fetchPost,
+                                    ))
                                 .toList() ??
                             [],
                       ),

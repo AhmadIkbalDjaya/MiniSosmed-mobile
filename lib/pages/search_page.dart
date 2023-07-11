@@ -25,7 +25,7 @@ class _SearchPageState extends State<SearchPage> {
     // fetchData();
   }
 
-  Future<void> searchUser(String query) async {
+  Future<void> fetchSearchUser(String query) async {
     try {
       List<Users> fetchUsers = await controller.searchUser(query);
       setState(() {
@@ -99,7 +99,7 @@ class _SearchPageState extends State<SearchPage> {
                             onPressed: () {
                               print(searchController.text);
                               setState(() {
-                                searchUser(searchController.text);
+                                fetchSearchUser(searchController.text);
                               });
                               // print(searchController.value);
                               // searchController(value);

@@ -1,9 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/controller/PostContoller.dart';
 import 'package:mini_sosmed/model/posts.dart';
 
-class CommentBox extends StatelessWidget {
-  const CommentBox({super.key, required this.comment});
+class CommentBox extends StatefulWidget {
+  const CommentBox({super.key, required this.comment, required this.fetchPost});
   final Comment comment;
+  final Function fetchPost;
+
+  @override
+  State<CommentBox> createState() => _CommentBoxState();
+}
+
+class _CommentBoxState extends State<CommentBox> {
+  final postContoller = PostContoller();
+
+  Future<dynamic> deleteComment(String id) async {
+    try {
+      var result = await postContoller.destroyComment(id);
+      print(result);
+    } catch (error) {
+      print("error while delete commnet");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +46,14 @@ class CommentBox extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${comment.name}",
+                        "${widget.comment.name}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        "${comment.body}",
+                        "${widget.comment.body}",
                         style: TextStyle(),
                       ),
                     ],
@@ -44,7 +62,7 @@ class CommentBox extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(
-                    "${comment.createdAt}",
+                    "${widget.comment.createdAt}",
                     style: TextStyle(
                       fontSize: 10,
                       color: Colors.grey[700],
@@ -103,26 +121,34 @@ class CommentBox extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Colors.grey[100],
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.delete,
-                                    color: Colors.red,
-                                  ),
-                                  Text(
-                                    "Hapus Komentar",
-                                    style: TextStyle(
+                            GestureDetector(
+                              onTap: () {
+                                // print("ok");
+                                deleteComment(widget.comment.id.toString());
+                                widget.fetchPost();
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[100],
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.delete,
                                       color: Colors.red,
                                     ),
-                                  ),
-                                ],
+                                    Text(
+                                      "Hapus Komentar",
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
