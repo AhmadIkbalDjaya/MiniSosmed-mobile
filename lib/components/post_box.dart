@@ -16,6 +16,7 @@ class _PostBoxState extends State<PostBox> {
   bool showComent = false;
   final postController = PostContoller();
   final bodyController = TextEditingController();
+  final commentController = TextEditingController();
 
   Future<void> deletePost(String id) async {
     try {
@@ -23,6 +24,17 @@ class _PostBoxState extends State<PostBox> {
       // widget.fetchPost();`
     } catch (e) {
       print("Error deleting Post: $e");
+    }
+  }
+
+  Future<dynamic> commentPost(String id) async {
+    final String body = commentController.text;
+    commentController.clear();
+    try {
+      var result = await postController.comment(id, body);
+      print(result);
+    } catch (error) {
+      return null;
     }
   }
 
@@ -442,6 +454,7 @@ class _PostBoxState extends State<PostBox> {
                             height: 30,
                             child: TextField(
                               // keyboardType: TextInputType.
+                              controller: commentController,
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(
                                   vertical: 0,
@@ -459,7 +472,10 @@ class _PostBoxState extends State<PostBox> {
                         SizedBox(
                           height: 30,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              commentPost(post.id.toString());
+                              widget.fetchPost();
+                            },
                             child: Text("Comen"),
                           ),
                         ),

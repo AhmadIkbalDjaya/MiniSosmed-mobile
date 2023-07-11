@@ -91,4 +91,15 @@ class PostContoller {
     //   return response.body;
     // }
   }
+
+  Future<dynamic> comment(String id, String body) async {
+    var url = Uri.parse("${link}/comment/${id}");
+    var bodyPost = {"body": body};
+    var response = await http.post(url, body: bodyPost, headers: {
+      HttpHeaders.acceptHeader: "application/json",
+      HttpHeaders.authorizationHeader:
+          "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+    });
+    return response.body;
+  }
 }
