@@ -36,8 +36,6 @@ class _HomaPageState extends State<HomaPage> {
     }
   }
 
-  
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -143,7 +141,9 @@ class _HomaPageState extends State<HomaPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ProfilePage(),
+                              builder: (context) => ProfilePage(
+                                username: "ahmad-ikbal-djaya",
+                              ),
                             ),
                           );
                         },
@@ -208,7 +208,10 @@ class _HomaPageState extends State<HomaPage> {
           itemCount: posts.length + 1,
           itemBuilder: (context, index) {
             if (index == 0) {
-              return CreatePostBox(fetchPost: fetchPost);
+              return CreatePostBox(
+                fetchPost: fetchPost,
+                need_username: false,
+              );
               // return CreatePostBox();
             } else {
               final post = posts[index - 1];

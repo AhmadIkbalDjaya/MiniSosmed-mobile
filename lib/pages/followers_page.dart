@@ -110,12 +110,12 @@ class _FollowersPageState extends State<FollowersPage> {
                       SizedBox(height: 15),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProfilePage(),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => ProfilePage(),
+                          //   ),
+                          // );
                         },
                         child: Row(
                           children: [
@@ -174,7 +174,7 @@ class _FollowersPageState extends State<FollowersPage> {
       ),
       body: ListView(
         children: [
-          ProfileWidget(),
+          // ProfileWidget(),
           SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),

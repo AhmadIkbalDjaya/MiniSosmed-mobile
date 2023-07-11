@@ -144,12 +144,12 @@ class _SearchPageState extends State<SearchPage> {
                       SizedBox(height: 15),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProfilePage(),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => ProfilePage(),
+                          //   ),
+                          // );
                         },
                         child: Row(
                           children: [

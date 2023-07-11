@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 import 'dart:io';
 import 'package:mini_sosmed/model/posts.dart';
 import 'package:http/http.dart' as http;
@@ -32,6 +31,7 @@ class PostContoller {
       HttpHeaders.authorizationHeader:
           "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
     });
+    print(response.body);
     if (response.statusCode == 200) {
       return true;
       // return response.body;

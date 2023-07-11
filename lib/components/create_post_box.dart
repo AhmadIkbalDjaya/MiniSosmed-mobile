@@ -5,8 +5,14 @@ import 'package:mini_sosmed/controller/PostContoller.dart';
 import 'package:mini_sosmed/pages/home_page.dart';
 
 class CreatePostBox extends StatefulWidget {
-  CreatePostBox({super.key, required this.fetchPost});
+  CreatePostBox(
+      {super.key,
+      required this.fetchPost,
+      required this.need_username,
+      this.username});
   final Function fetchPost;
+  final bool need_username;
+  String? username;
 
   @override
   State<CreatePostBox> createState() => _CreatePostBoxState();
@@ -17,7 +23,7 @@ class _CreatePostBoxState extends State<CreatePostBox> {
 
   final bodyController = TextEditingController();
 
-  Future<bool> storePost() async {
+  Future<dynamic> storePost() async {
     String body = bodyController.text;
 
     bodyController.clear();
@@ -144,7 +150,11 @@ class _CreatePostBoxState extends State<CreatePostBox> {
                                     onPressed: () {
                                       storePost();
                                       Navigator.of(context).pop();
-                                      widget.fetchPost();
+                                      if (widget.need_username == true) {
+                                        widget.fetchPost(widget.username);
+                                      } else {
+                                        widget.fetchPost();
+                                      }
                                     },
                                     child: Text("Posting"),
                                   ),

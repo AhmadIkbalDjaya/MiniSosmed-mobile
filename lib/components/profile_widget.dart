@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/model/profile.dart';
 import 'package:mini_sosmed/pages/follow_page.dart';
 import 'package:mini_sosmed/pages/followers_page.dart';
 
 class ProfileWidget extends StatelessWidget {
-  const ProfileWidget({
-    super.key,
-  });
+  const ProfileWidget({super.key, required this.profile});
+  final Profile profile;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class ProfileWidget extends StatelessWidget {
           ),
           SizedBox(height: 5),
           Text(
-            "Ahmad Ikbal Djaya",
+            "${profile.name}",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -59,7 +59,7 @@ class ProfileWidget extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    "199 Pengikut",
+                    "${profile.followers} Pengikutt",
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.black,
@@ -80,7 +80,7 @@ class ProfileWidget extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    "89 Pengikut",
+                    "${profile.follows} Pengikut",
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.black,
