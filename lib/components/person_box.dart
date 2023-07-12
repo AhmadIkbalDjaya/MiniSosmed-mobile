@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_sosmed/controller/UserController.dart';
 import 'package:mini_sosmed/model/users.dart';
+import 'package:mini_sosmed/pages/profile_page.dart';
 
 class PersonBox extends StatelessWidget {
   PersonBox({super.key, required this.user, required this.fetchData});
@@ -42,11 +43,22 @@ class PersonBox extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "${user.name}",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ProfilePage(username: user.username.toString()),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "${user.name}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                     SizedBox(height: 5),

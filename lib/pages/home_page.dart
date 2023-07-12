@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/components/minsos_bottom_app_bar.dart';
 import 'package:mini_sosmed/components/create_post_box.dart';
 import 'package:mini_sosmed/components/post_box.dart';
 import 'package:mini_sosmed/controller/PostContoller.dart';
 import 'package:mini_sosmed/model/posts.dart';
-import 'package:mini_sosmed/pages/login_page.dart';
-import 'package:mini_sosmed/pages/profile_page.dart';
-import 'package:mini_sosmed/pages/search_page.dart';
 
 class HomaPage extends StatefulWidget {
   HomaPage({super.key});
@@ -63,140 +61,7 @@ class _HomaPageState extends State<HomaPage> {
         ],
         bottom: showBottomAppBar
             ? PreferredSize(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: SizedBox(
-                              height: 35,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 15,
-                                    vertical: 0,
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: 'Search',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 5),
-                          OutlinedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SearchPage(query: 'a',),
-                                ),
-                              );
-                            },
-                            child: Text("Search"),
-                            style: OutlinedButton.styleFrom(
-                              foregroundColor: Colors.white, // Warna teks putih
-                              side: BorderSide(
-                                  color: Colors.white), // Border warna putih
-                            ),
-                          )
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomaPage(),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              'Home',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ),
-                            ),
-                            SizedBox(width: 5),
-                            Icon(
-                              Icons.home,
-                              size: 22,
-                              color: Colors.white,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProfilePage(
-                                username: "ahmad-ikbal-djaya",
-                              ),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              'Profile',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ),
-                            ),
-                            SizedBox(width: 5),
-                            Icon(
-                              Icons.person,
-                              size: 22,
-                              color: Colors.white,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginPage(),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              'Logout',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ),
-                            ),
-                            SizedBox(width: 5),
-                            Icon(
-                              Icons.logout,
-                              size: 22,
-                              color: Colors.white,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                    ],
-                  ),
-                ),
+                child: MinsosBottomAppBar(),
                 preferredSize: Size.fromHeight(175),
               )
             : null,

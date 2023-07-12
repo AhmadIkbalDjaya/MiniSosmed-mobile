@@ -18,13 +18,13 @@ class _SearchPageState extends State<SearchPage> {
   bool showBottomAppBar = false;
   final controller = UserContoller();
   List<Users> users = [];
-  // String defQuery = "";
+  var searchController = TextEditingController();
 
-  final searchController = TextEditingController();
   @override
   void initState() {
     super.initState();
     fetchSearchUser();
+    searchController.text = widget.query;
   }
 
   Future<void> fetchSearchUser([String? query]) async {
@@ -77,11 +77,6 @@ class _SearchPageState extends State<SearchPage> {
                             child: SizedBox(
                               height: 35,
                               child: TextField(
-                                onChanged: (value) {
-                                  // setState(() {
-                                  //   search = searchController.value.toString();
-                                  // });
-                                },
                                 controller: searchController,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
