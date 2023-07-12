@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mini_sosmed/controller/LoginRegisController.dart';
 import 'package:mini_sosmed/pages/login_page.dart';
 
 class RegisPage extends StatefulWidget {
   const RegisPage({super.key});
-
   @override
   State<RegisPage> createState() => _RegisPageState();
 }
 
 class _RegisPageState extends State<RegisPage> {
+  final regisController = LoginRegisController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  Future<dynamic> regisStore() async {
+    String name = nameController.text;
+    String email = emailController.text;
+    String password = passwordController.text;
+    try {
+      var result = await regisController.regis(name, email, password);
+      print(result);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +60,7 @@ class _RegisPageState extends State<RegisPage> {
                   ),
                 ),
                 TextField(
+                  controller: nameController,
                   autocorrect: false,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
@@ -53,6 +72,7 @@ class _RegisPageState extends State<RegisPage> {
                   ),
                 ),
                 TextField(
+                  controller: emailController,
                   autocorrect: false,
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
@@ -65,6 +85,7 @@ class _RegisPageState extends State<RegisPage> {
                   ),
                 ),
                 TextField(
+                  controller: passwordController,
                   autocorrect: false,
                   textInputAction: TextInputAction.done,
                   obscureText: true,
@@ -77,7 +98,14 @@ class _RegisPageState extends State<RegisPage> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    regisStore();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => LoginPage(),
+                      ),
+                    );
+                  },
                   child: Text(
                     "Registrasi",
                     style: TextStyle(

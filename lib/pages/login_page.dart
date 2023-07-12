@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mini_sosmed/controller/LoginRegisController.dart';
+import 'package:mini_sosmed/pages/home_page.dart';
 import 'package:mini_sosmed/pages/regis_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,6 +12,69 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final loginController = LoginRegisController();
+
+  Future<void> login() async {
+    String email = emailController.text;
+    String password = passwordController.text;
+    bool authSuccess = false;
+    if (email.isEmpty || password.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Email dan password harus diisi'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
+    var result = await loginController.login(email, password);
+    if (result == true) {
+      authSuccess = true;
+    }
+
+    if (authSuccess) {
+      // Simpan status login menggunakan SharedPreferences
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // prefs.setBool('isLoggedIn', true);
+
+      // Navigasikan ke halaman beranda setelah login berhasil
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomaPage(),
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Email atau password salah'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 // SizedBox(height: 20),
                 TextField(
+                  controller: emailController,
                   autocorrect: false,
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
@@ -56,6 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 // SizedBox(height: 15),
                 TextField(
+                  controller: passwordController,
                   autocorrect: false,
                   textInputAction: TextInputAction.done,
                   obscureText: true,
@@ -68,7 +135,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    login();
+                  },
                   child: Text(
                     "Login",
                     style: TextStyle(
