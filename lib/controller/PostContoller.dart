@@ -4,16 +4,16 @@ import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/model/posts.dart';
 import 'package:http/http.dart' as http;
 
-final link = "http://127.0.0.1:8000/api";
+final link = "https://sgso-invitation.com/api";
 
 class PostContoller {
   Future<List<Posts>> get() async {
     var url = Uri.parse("${link}/dashboard");
     var response = await http.get(url, headers: {
       HttpHeaders.acceptHeader: "application/json",
-      HttpHeaders.authorizationHeader:
-          "Bearer ${Auth.accessToken}",
+      HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
     });
+    // print(response.body);
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
       var postList = jsonData['data'] as List<dynamic>;
@@ -29,8 +29,7 @@ class PostContoller {
     var bodyPost = {"body": body};
     var response = await http.post(url, body: bodyPost, headers: {
       HttpHeaders.acceptHeader: "application/json",
-      HttpHeaders.authorizationHeader:
-          "Bearer ${Auth.accessToken}",
+      HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
     });
     print(response.body);
     if (response.statusCode == 200) {
@@ -48,8 +47,7 @@ class PostContoller {
     var bodyUpdate = {"body": body};
     var response = await http.put(url, body: bodyUpdate, headers: {
       HttpHeaders.acceptHeader: "application/json",
-      HttpHeaders.authorizationHeader:
-          "Bearer ${Auth.accessToken}",
+      HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
     });
     if (response.statusCode == 200) {
       print(response.body);
@@ -64,8 +62,7 @@ class PostContoller {
     var url = Uri.parse("${link}/post/${id}");
     var response = await http.delete(url, headers: {
       HttpHeaders.acceptHeader: "application/json",
-      HttpHeaders.authorizationHeader:
-          "Bearer ${Auth.accessToken}",
+      HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
     });
     if (response.statusCode == 200) {
       print("ok");
@@ -81,8 +78,7 @@ class PostContoller {
     var url = Uri.parse("${link}/like/${id}");
     var response = await http.get(url, headers: {
       HttpHeaders.acceptHeader: "application/json",
-      HttpHeaders.authorizationHeader:
-          "Bearer ${Auth.accessToken}",
+      HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
     });
     return response.body;
     // print(url);
@@ -101,8 +97,7 @@ class PostContoller {
       body: bodyPost,
       headers: {
         HttpHeaders.acceptHeader: "application/json",
-        HttpHeaders.authorizationHeader:
-            "Bearer ${Auth.accessToken}",
+        HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
       },
     );
     return response.body;
@@ -115,8 +110,7 @@ class PostContoller {
       url,
       headers: {
         HttpHeaders.acceptHeader: "application/json",
-        HttpHeaders.authorizationHeader:
-            "Bearer ${Auth.accessToken}",
+        HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
       },
     );
     return response.body;

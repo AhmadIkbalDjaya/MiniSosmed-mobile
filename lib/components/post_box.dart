@@ -94,14 +94,14 @@ class _PostBoxState extends State<PostBox> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProfilePage(
-                          username: "${post.username}",
-                        ),
-                      ),
-                    );
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ProfilePage(
+                    //       username: "${post.username}",
+                    //     ),
+                    //   ),
+                    // );
                   },
                   child: Row(
                     children: [
@@ -400,6 +400,7 @@ class _PostBoxState extends State<PostBox> {
                 ),
               ),
               post.image != null ? Image.network("${post.image}") : Container(),
+              // post.image != null ? Image.network("${post.image}") : Container(),
             ],
           ),
           // like comment

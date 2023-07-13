@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:mini_sosmed/auth.dart';
 
-final link = "http://127.0.0.1:8000/api";
+final link = "https://sgso-invitation.com/api";
 
 class LoginRegisController {
   Future<dynamic> regis(String name, String email, String password) async {

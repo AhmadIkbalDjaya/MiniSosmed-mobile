@@ -1,6 +1,6 @@
 class Posts {
   int? id;
-  int? userId;
+  String? userId;
   String? username;
   String? body;
   String? image;
@@ -64,8 +64,8 @@ class Posts {
 
 class Comment {
   int? id;
-  int? userId;
-  int? postId;
+  String? userId;
+  String? postId;
   String? body;
   String? createdAt;
   String? name;

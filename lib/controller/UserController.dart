@@ -7,15 +7,14 @@ import 'package:mini_sosmed/model/posts.dart';
 import 'package:mini_sosmed/model/profile.dart';
 import 'package:mini_sosmed/model/users.dart';
 
-final link = "http://127.0.0.1:8000/api";
+final link = "https://sgso-invitation.com/api";
 
 class UserContoller {
   Future<List<Users>> searchUser(String query) async {
     var url = Uri.parse("${link}/search?search=${query}");
     var response = await http.get(url, headers: {
       HttpHeaders.acceptHeader: "application/json",
-      HttpHeaders.authorizationHeader:
-          "Bearer ${Auth.accessToken}",
+      HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
     });
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
@@ -33,8 +32,7 @@ class UserContoller {
       url,
       headers: {
         HttpHeaders.acceptHeader: "application/json",
-        HttpHeaders.authorizationHeader:
-            "Bearer ${Auth.accessToken}",
+        HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
       },
     );
     print(response.body);
@@ -45,8 +43,7 @@ class UserContoller {
     var url = Uri.parse("${link}/profile/${username}");
     var response = await http.get(url, headers: {
       HttpHeaders.acceptHeader: "application/json",
-      HttpHeaders.authorizationHeader:
-          "Bearer ${Auth.accessToken}",
+      HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
     });
     // print(response.body);
     if (response.statusCode == 200) {
@@ -63,8 +60,7 @@ class UserContoller {
     var url = Uri.parse("${link}/profile/posts/${username}");
     var response = await http.get(url, headers: {
       HttpHeaders.acceptHeader: "application/json",
-      HttpHeaders.authorizationHeader:
-          "Bearer ${Auth.accessToken}",
+      HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
     });
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
