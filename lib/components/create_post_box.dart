@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/controller/PostContoller.dart';

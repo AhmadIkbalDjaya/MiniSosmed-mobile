@@ -16,6 +16,7 @@ class _RegisPageState extends State<RegisPage> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool showPass = true;
 
   Future<dynamic> regisStore() async {
     String name = nameController.text;
@@ -90,12 +91,20 @@ class _RegisPageState extends State<RegisPage> {
                   controller: passwordController,
                   autocorrect: false,
                   textInputAction: TextInputAction.done,
-                  obscureText: true,
+                  obscureText: showPass,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(horizontal: 20),
                     label: Text("Password"),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
+                    ),
+                    prefixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          showPass = !showPass;
+                        });
+                      },
+                      icon: Icon(Icons.remove_red_eye_outlined),
                     ),
                   ),
                 ),

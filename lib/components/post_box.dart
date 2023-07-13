@@ -3,8 +3,6 @@ import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/components/comment_box.dart';
 import 'package:mini_sosmed/controller/PostContoller.dart';
 import 'package:mini_sosmed/model/posts.dart';
-import 'package:mini_sosmed/model/profile.dart';
-import 'package:mini_sosmed/pages/profile_page.dart';
 
 class PostBox extends StatefulWidget {
   const PostBox({super.key, required this.post, required this.fetchPost});

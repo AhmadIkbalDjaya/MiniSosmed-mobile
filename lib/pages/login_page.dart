@@ -17,6 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final loginController = LoginRegisController();
+  bool showPass = true;
 
   Future<void> login() async {
     String email = emailController.text;
@@ -74,14 +75,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    // if (Auth.isLoggedIn()) {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => HomaPage(),
-    //     ),
-    //   );
-    // }
     return Scaffold(
       body: Center(
         child: Container(
@@ -130,12 +123,20 @@ class _LoginPageState extends State<LoginPage> {
                   controller: passwordController,
                   autocorrect: false,
                   textInputAction: TextInputAction.done,
-                  obscureText: true,
+                  obscureText: showPass,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(horizontal: 20),
                     label: Text("Password"),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
+                    ),
+                    prefixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          showPass = !showPass;
+                        });
+                      },
+                      icon: Icon(Icons.remove_red_eye_outlined),
                     ),
                   ),
                 ),

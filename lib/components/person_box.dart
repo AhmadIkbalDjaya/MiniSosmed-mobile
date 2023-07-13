@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/controller/UserController.dart';
 import 'package:mini_sosmed/model/users.dart';
 import 'package:mini_sosmed/pages/profile_page.dart';
@@ -69,16 +70,18 @@ class PersonBox extends StatelessWidget {
             ],
           ),
           SizedBox(height: 5),
-          ElevatedButton(
-            onPressed: () {
-              follow(user.username.toString());
-              fetchData();
-            },
-            child: Text(user.hasFollow == false ? "Follow" : "Unfollow"),
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(double.infinity, 35),
-            ),
-          ),
+          user.id.toString() != Auth.user_id
+              ? ElevatedButton(
+                  onPressed: () {
+                    follow(user.username.toString());
+                    fetchData();
+                  },
+                  child: Text(user.hasFollow == false ? "Follow" : "Unfollow"),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 35),
+                  ),
+                )
+              : SizedBox(),
         ],
       ),
     );

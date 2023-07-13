@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/components/person_box.dart';
+import 'package:mini_sosmed/controller/LoginRegisController.dart';
 import 'package:mini_sosmed/controller/UserController.dart';
 import 'package:mini_sosmed/model/users.dart';
 import 'package:mini_sosmed/pages/home_page.dart';
@@ -19,6 +21,7 @@ class _SearchPageState extends State<SearchPage> {
   final controller = UserContoller();
   List<Users> users = [];
   var searchController = TextEditingController();
+  final loginController = LoginRegisController();
 
   @override
   void initState() {
@@ -155,12 +158,14 @@ class _SearchPageState extends State<SearchPage> {
                       SizedBox(height: 15),
                       GestureDetector(
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => ProfilePage(),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfilePage(
+                                username: "${Auth.username}",
+                              ),
+                            ),
+                          );
                         },
                         child: Row(
                           children: [
@@ -183,7 +188,9 @@ class _SearchPageState extends State<SearchPage> {
                       SizedBox(height: 15),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
+                          loginController.logout();
+                          Auth.resetAuth();
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => LoginPage(),

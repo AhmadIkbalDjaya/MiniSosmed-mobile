@@ -162,7 +162,16 @@ class BioBox extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 30),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => Dialog(
+                        child: Column(
+                          children: [],
+                        ),
+                      ),
+                    );
+                  },
                   child: Text("Edit Biodata"),
                 )
               : SizedBox(),
