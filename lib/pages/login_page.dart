@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/controller/LoginRegisController.dart';
 import 'package:mini_sosmed/pages/home_page.dart';
 import 'package:mini_sosmed/pages/regis_page.dart';
 
 class LoginPage extends StatefulWidget {
+  static const String routeName = '/login'; //
   const LoginPage({super.key});
 
   @override
@@ -45,11 +47,6 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     if (authSuccess) {
-      // Simpan status login menggunakan SharedPreferences
-      // SharedPreferences prefs = await SharedPreferences.getInstance();
-      // prefs.setBool('isLoggedIn', true);
-
-      // Navigasikan ke halaman beranda setelah login berhasil
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -77,6 +74,14 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    // if (Auth.isLoggedIn()) {
+    //   Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) => HomaPage(),
+    //     ),
+    //   );
+    // }
     return Scaffold(
       body: Center(
         child: Container(

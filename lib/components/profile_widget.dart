@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/model/profile.dart';
 import 'package:mini_sosmed/pages/follow_page.dart';
 import 'package:mini_sosmed/pages/followers_page.dart';
@@ -91,16 +92,18 @@ class ProfileWidget extends StatelessWidget {
             ],
           ),
           SizedBox(height: 5),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text("Edit Image"),
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, 30),
-              ),
-            ),
-          ),
+          profile.id.toString() == Auth.user_id
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Edit Image"),
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(double.infinity, 30),
+                    ),
+                  ),
+                )
+              : SizedBox(),
         ],
       ),
     );

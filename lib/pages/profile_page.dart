@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/components/about_us.dart';
 import 'package:mini_sosmed/components/bio.dart';
 import 'package:mini_sosmed/components/create_post_box.dart';
@@ -104,7 +105,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       SizedBox(height: 10),
                       AboutUs(),
                       SizedBox(height: 50),
-                      CreatePostBox(fetchPost: fetchUserPost),
+                      profile!.id.toString() == Auth.user_id
+                          ? CreatePostBox(fetchPost: fetchUserPost)
+                          : SizedBox(),
                     ],
                   )
                 : SizedBox();

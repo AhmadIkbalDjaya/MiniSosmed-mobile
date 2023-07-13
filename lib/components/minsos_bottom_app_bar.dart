@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/auth.dart';
+import 'package:mini_sosmed/controller/LoginRegisController.dart';
 import 'package:mini_sosmed/pages/home_page.dart';
 import 'package:mini_sosmed/pages/login_page.dart';
 import 'package:mini_sosmed/pages/profile_page.dart';
@@ -9,6 +11,7 @@ class MinsosBottomAppBar extends StatelessWidget {
     super.key,
   });
   final searchController = TextEditingController();
+  final loginController = LoginRegisController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,7 @@ class MinsosBottomAppBar extends StatelessWidget {
                       },
                     );
                   } else {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
@@ -58,12 +61,6 @@ class MinsosBottomAppBar extends StatelessWidget {
                     );
                     // SearchPage(query: searchController.text);
                   }
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => SearchPage(query: 'a'),
-                  //   ),
-                  // );
                 },
                 child: Text("Search"),
                 style: OutlinedButton.styleFrom(
@@ -108,7 +105,7 @@ class MinsosBottomAppBar extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ProfilePage(
-                    username: "ahmad-ikbal-djaya",
+                    username: "${Auth.username}",
                   ),
                 ),
               );
@@ -134,7 +131,9 @@ class MinsosBottomAppBar extends StatelessWidget {
           SizedBox(height: 15),
           GestureDetector(
             onTap: () {
-              Navigator.push(
+              loginController.logout();
+              Auth.resetAuth();
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => LoginPage(),

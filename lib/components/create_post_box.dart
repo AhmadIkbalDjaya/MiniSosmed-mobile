@@ -1,6 +1,7 @@
 import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/controller/PostContoller.dart';
 import 'package:mini_sosmed/pages/home_page.dart';
 
@@ -102,7 +103,7 @@ class _CreatePostBoxState extends State<CreatePostBox> {
                                   CircleAvatar(),
                                   SizedBox(width: 10),
                                   Expanded(
-                                    child: Text("Ahmad Ikbal Djaya"),
+                                    child: Text("${Auth.name}"),
                                   ),
                                 ],
                               ),
@@ -165,7 +166,7 @@ class _CreatePostBoxState extends State<CreatePostBox> {
                 ),
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  "Apa yang anda pikirkan, Ahmad Ikbal Djaya?",
+                  "Apa yang anda pikirkan, ${Auth.name}?",
                   style: TextStyle(
                     color: Colors.grey,
                   ),

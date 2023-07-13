@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/components/minsos_bottom_app_bar.dart';
 import 'package:mini_sosmed/components/create_post_box.dart';
 import 'package:mini_sosmed/components/post_box.dart';
 import 'package:mini_sosmed/controller/PostContoller.dart';
 import 'package:mini_sosmed/model/posts.dart';
+import 'package:mini_sosmed/pages/login_page.dart';
 
 class HomaPage extends StatefulWidget {
+  static const String routeName = '/home';
   HomaPage({super.key});
 
   @override
@@ -35,6 +38,11 @@ class _HomaPageState extends State<HomaPage> {
   }
 
   Widget build(BuildContext context) {
+    if (!Auth.isLoggedIn()) {
+      MaterialPageRoute(
+        builder: (context) => LoginPage(),
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 13, 110, 253),

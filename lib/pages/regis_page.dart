@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/controller/LoginRegisController.dart';
+import 'package:mini_sosmed/pages/home_page.dart';
 import 'package:mini_sosmed/pages/login_page.dart';
 
 class RegisPage extends StatefulWidget {

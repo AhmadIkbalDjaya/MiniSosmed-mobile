@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/pages/home_page.dart';
 import 'package:mini_sosmed/pages/login_page.dart';
 import 'package:mini_sosmed/pages/profile_page.dart';
@@ -13,14 +14,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      onGenerateRoute: (settings) {
+        // print(settings.name);
+        if (settings.name == LoginPage.routeName && Auth.isLoggedIn()) {
+          return MaterialPageRoute(builder: (context) => HomaPage());
+        } else {
+          return MaterialPageRoute(builder: (context) => LoginPage());
+        }
+      },
       theme: ThemeData(
           bottomSheetTheme: BottomSheetThemeData(
         backgroundColor: Colors.black.withOpacity(.3),
       )),
       debugShowCheckedModeBanner: false,
-      // color: Color.fromARGB(255, 240, 242, 245),
       color: Colors.grey,
-      home: HomaPage(),
+      // home: LoginPage(),
+      // home: HomaPage(),
     );
   }
 }

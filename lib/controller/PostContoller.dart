@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/model/posts.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,7 +12,7 @@ class PostContoller {
     var response = await http.get(url, headers: {
       HttpHeaders.acceptHeader: "application/json",
       HttpHeaders.authorizationHeader:
-          "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+          "Bearer ${Auth.accessToken}",
     });
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
@@ -29,7 +30,7 @@ class PostContoller {
     var response = await http.post(url, body: bodyPost, headers: {
       HttpHeaders.acceptHeader: "application/json",
       HttpHeaders.authorizationHeader:
-          "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+          "Bearer ${Auth.accessToken}",
     });
     print(response.body);
     if (response.statusCode == 200) {
@@ -48,7 +49,7 @@ class PostContoller {
     var response = await http.put(url, body: bodyUpdate, headers: {
       HttpHeaders.acceptHeader: "application/json",
       HttpHeaders.authorizationHeader:
-          "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+          "Bearer ${Auth.accessToken}",
     });
     if (response.statusCode == 200) {
       print(response.body);
@@ -64,7 +65,7 @@ class PostContoller {
     var response = await http.delete(url, headers: {
       HttpHeaders.acceptHeader: "application/json",
       HttpHeaders.authorizationHeader:
-          "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+          "Bearer ${Auth.accessToken}",
     });
     if (response.statusCode == 200) {
       print("ok");
@@ -81,7 +82,7 @@ class PostContoller {
     var response = await http.get(url, headers: {
       HttpHeaders.acceptHeader: "application/json",
       HttpHeaders.authorizationHeader:
-          "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+          "Bearer ${Auth.accessToken}",
     });
     return response.body;
     // print(url);
@@ -101,7 +102,7 @@ class PostContoller {
       headers: {
         HttpHeaders.acceptHeader: "application/json",
         HttpHeaders.authorizationHeader:
-            "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+            "Bearer ${Auth.accessToken}",
       },
     );
     return response.body;
@@ -115,7 +116,7 @@ class PostContoller {
       headers: {
         HttpHeaders.acceptHeader: "application/json",
         HttpHeaders.authorizationHeader:
-            "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+            "Bearer ${Auth.accessToken}",
       },
     );
     return response.body;

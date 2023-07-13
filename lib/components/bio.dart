@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/model/profile.dart';
 
 class BioBox extends StatelessWidget {
@@ -156,13 +157,15 @@ class BioBox extends StatelessWidget {
               ],
             ),
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(double.infinity, 30),
-            ),
-            onPressed: () {},
-            child: Text("Edit Biodata"),
-          ),
+          profile.id.toString() == Auth.user_id
+              ? ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 30),
+                  ),
+                  onPressed: () {},
+                  child: Text("Edit Biodata"),
+                )
+              : SizedBox(),
         ],
       ),
     );

@@ -1,6 +1,7 @@
 class Posts {
   int? id;
   int? userId;
+  String? username;
   String? body;
   String? image;
   String? updatedAt;
@@ -13,6 +14,7 @@ class Posts {
   Posts(
       {this.id,
       this.userId,
+      this.username,
       this.body,
       this.image,
       this.updatedAt,
@@ -25,6 +27,7 @@ class Posts {
   Posts.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['user_id'];
+    username = json['username'];
     body = json['body'];
     image = json['image'];
     updatedAt = json['updated_at'];
@@ -44,6 +47,7 @@ class Posts {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['user_id'] = this.userId;
+    data['username'] = this.username;
     data['body'] = this.body;
     data['image'] = this.image;
     data['updated_at'] = this.updatedAt;

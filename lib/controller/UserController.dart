@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:http/http.dart' as http;
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/model/posts.dart';
 import 'package:mini_sosmed/model/profile.dart';
 import 'package:mini_sosmed/model/users.dart';
@@ -14,7 +15,7 @@ class UserContoller {
     var response = await http.get(url, headers: {
       HttpHeaders.acceptHeader: "application/json",
       HttpHeaders.authorizationHeader:
-          "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+          "Bearer ${Auth.accessToken}",
     });
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
@@ -33,7 +34,7 @@ class UserContoller {
       headers: {
         HttpHeaders.acceptHeader: "application/json",
         HttpHeaders.authorizationHeader:
-            "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+            "Bearer ${Auth.accessToken}",
       },
     );
     print(response.body);
@@ -45,7 +46,7 @@ class UserContoller {
     var response = await http.get(url, headers: {
       HttpHeaders.acceptHeader: "application/json",
       HttpHeaders.authorizationHeader:
-          "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+          "Bearer ${Auth.accessToken}",
     });
     // print(response.body);
     if (response.statusCode == 200) {
@@ -63,7 +64,7 @@ class UserContoller {
     var response = await http.get(url, headers: {
       HttpHeaders.acceptHeader: "application/json",
       HttpHeaders.authorizationHeader:
-          "Bearer 5|cozezdjIgxLsIRjjBkPw63gEupv0nhHqKoeNpExi",
+          "Bearer ${Auth.accessToken}",
     });
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/components/comment_box.dart';
 import 'package:mini_sosmed/controller/PostContoller.dart';
 import 'package:mini_sosmed/model/posts.dart';
+import 'package:mini_sosmed/model/profile.dart';
+import 'package:mini_sosmed/pages/profile_page.dart';
 
 class PostBox extends StatefulWidget {
   const PostBox({super.key, required this.post, required this.fetchPost});
@@ -89,264 +92,296 @@ class _PostBoxState extends State<PostBox> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    CircleAvatar(),
-                    SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("${post.name}"),
-                        Text(
-                          "${post.updatedAt}",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                          ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProfilePage(
+                          username: "${post.username}",
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-                IconButton(
-                  icon: Icon(Icons.more_horiz),
-                  onPressed: () {
-                    showBottomSheet(
-                      context: context,
-                      builder: (context) {
-                        return Column(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Container(
-                                  color: Colors.transparent,
-                                ),
-                              ),
+                      ),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      CircleAvatar(),
+                      SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("${post.name}"),
+                          Text(
+                            "${post.updatedAt}",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
                             ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  left: 15, right: 15, bottom: 15, top: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                  ),
-                                ],
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10),
-                                ),
-                              ),
-                              height: 135,
-                              width: 900,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                post.userId.toString() == Auth.user_id
+                    ? IconButton(
+                        icon: Icon(Icons.more_horiz),
+                        onPressed: () {
+                          showBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return Column(
+                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Container(
-                                    margin: EdgeInsets.only(bottom: 5),
-                                    width: 50,
-                                    height: 5,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(5),
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Container(
+                                        color: Colors.transparent,
+                                      ),
                                     ),
                                   ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) => Dialog(
-                                          child: Container(
-                                            height: 350,
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 10, horizontal: 15),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                // Header
-                                                Column(
-                                                  children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          "Edit Postingan",
-                                                          style: TextStyle(
-                                                            fontSize: 16,
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                        left: 15,
+                                        right: 15,
+                                        bottom: 15,
+                                        top: 10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 2,
+                                          blurRadius: 5,
+                                        ),
+                                      ],
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                      ),
+                                    ),
+                                    height: 135,
+                                    width: 900,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(bottom: 5),
+                                          width: 50,
+                                          height: 5,
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) => Dialog(
+                                                child: Container(
+                                                  height: 350,
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 15),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      // Header
+                                                      Column(
+                                                        children: [
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Text(
+                                                                "Edit Postingan",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 16,
+                                                                ),
+                                                              ),
+                                                              IconButton(
+                                                                onPressed: () {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                                icon: Icon(
+                                                                  Icons.close,
+                                                                  size: 20,
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
-                                                        ),
-                                                        IconButton(
-                                                          onPressed: () {
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                          },
-                                                          icon: Icon(
-                                                            Icons.close,
-                                                            size: 20,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Divider(),
-                                                  ],
-                                                ),
-                                                // body
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        CircleAvatar(),
-                                                        SizedBox(width: 10),
-                                                        Expanded(
-                                                          child: Text(
-                                                              "Ahmad Ikbal Djaya"),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(height: 10),
-                                                    Text(
-                                                        "Apa yang sedang anda pikirkan?"),
-                                                    SizedBox(height: 10),
-                                                    TextField(
-                                                      controller:
-                                                          bodyController,
-                                                      keyboardType:
-                                                          TextInputType
-                                                              .multiline,
-                                                      maxLines: null,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        border:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                        ),
+                                                          Divider(),
+                                                        ],
                                                       ),
-                                                    ),
-                                                    SizedBox(height: 10),
-                                                    Text("Upload Gambar"),
-                                                  ],
-                                                ),
-                                                // footer
-                                                Column(
-                                                  children: [
-                                                    Divider(),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: [
-                                                        ElevatedButton(
-                                                          onPressed: () {
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                          },
-                                                          child: Text("Close"),
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                            backgroundColor:
-                                                                Colors.grey,
+                                                      // body
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              CircleAvatar(),
+                                                              SizedBox(
+                                                                  width: 10),
+                                                              Expanded(
+                                                                child: Text(
+                                                                    "Ahmad Ikbal Djaya"),
+                                                              ),
+                                                            ],
                                                           ),
-                                                        ),
-                                                        SizedBox(width: 10),
-                                                        ElevatedButton(
-                                                          onPressed: () {
-                                                            // storePost();
-                                                            updatePost(
-                                                              widget.post.id
-                                                                  .toString(),
-                                                            );
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                            widget.fetchPost();
-                                                          },
-                                                          child: Text("Edit"),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
+                                                          SizedBox(height: 10),
+                                                          Text(
+                                                              "Apa yang sedang anda pikirkan?"),
+                                                          SizedBox(height: 10),
+                                                          TextField(
+                                                            controller:
+                                                                bodyController,
+                                                            keyboardType:
+                                                                TextInputType
+                                                                    .multiline,
+                                                            maxLines: null,
+                                                            decoration:
+                                                                InputDecoration(
+                                                              border:
+                                                                  OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(height: 10),
+                                                          Text("Upload Gambar"),
+                                                        ],
+                                                      ),
+                                                      // footer
+                                                      Column(
+                                                        children: [
+                                                          Divider(),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
+                                                            children: [
+                                                              ElevatedButton(
+                                                                onPressed: () {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                                child: Text(
+                                                                    "Close"),
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .grey,
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                  width: 10),
+                                                              ElevatedButton(
+                                                                onPressed: () {
+                                                                  // storePost();
+                                                                  updatePost(
+                                                                    widget
+                                                                        .post.id
+                                                                        .toString(),
+                                                                  );
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                  widget
+                                                                      .fetchPost();
+                                                                },
+                                                                child: Text(
+                                                                    "Edit"),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey[100],
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(Icons.edit),
+                                                Text("Edit Postingan"),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            deletePost(post.id.toString());
+                                            widget.fetchPost();
+                                            Navigator.pop(context);
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey[100],
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.delete,
+                                                  color: Colors.red,
+                                                ),
+                                                Text(
+                                                  "Hapus Postingan",
+                                                  style: TextStyle(
+                                                    color: Colors.red,
+                                                  ),
                                                 ),
                                               ],
                                             ),
                                           ),
                                         ),
-                                      );
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey[100],
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(Icons.edit),
-                                          Text("Edit Postingan"),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      deletePost(post.id.toString());
-                                      widget.fetchPost();
-                                      Navigator.pop(context);
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey[100],
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.delete,
-                                            color: Colors.red,
-                                          ),
-                                          Text(
-                                            "Hapus Postingan",
-                                            style: TextStyle(
-                                              color: Colors.red,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                      ],
                                     ),
                                   ),
                                 ],
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                ),
+                              );
+                            },
+                          );
+                        },
+                      )
+                    : SizedBox(),
               ],
             ),
           ),
