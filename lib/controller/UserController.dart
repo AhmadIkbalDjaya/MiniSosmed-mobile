@@ -89,4 +89,36 @@ class UserContoller {
       return false;
     }
   }
+
+  Future<dynamic> userFollowers(String username) async {
+    var url = Uri.parse("${link}/user/followers/${username}");
+    var response = await http.get(url, headers: {
+      HttpHeaders.acceptHeader: "application/json",
+      HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
+    });
+    if (response.statusCode == 200) {
+      var jsonData = jsonDecode(response.body);
+      var userList = jsonData['data'] as List<dynamic>;
+      var users = userList.map((e) => Users.fromJson(e)).toList();
+      return users;
+    } else {
+      throw Exception("Failed to fetch data");
+    }
+  }
+
+  Future<dynamic> userFollowing(String username) async {
+    var url = Uri.parse("${link}/user/following/${username}");
+    var response = await http.get(url, headers: {
+      HttpHeaders.acceptHeader: "application/json",
+      HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
+    });
+    if (response.statusCode == 200) {
+      var jsonData = jsonDecode(response.body);
+      var userList = jsonData['data'] as List<dynamic>;
+      var users = userList.map((e) => Users.fromJson(e)).toList();
+      return users;
+    } else {
+      throw Exception("Failed to fetch data");
+    }
+  }
 }

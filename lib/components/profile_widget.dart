@@ -55,7 +55,8 @@ class ProfileWidget extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => FollowingPage(),
+                        builder: (context) => FollowersPage(
+                            username: profile.username.toString()),
                       ),
                     );
                   },
@@ -76,12 +77,13 @@ class ProfileWidget extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => FollowersPage(),
+                        builder: (context) => FollowingPage(
+                            username: profile.username.toString()),
                       ),
                     );
                   },
                   child: Text(
-                    "${profile.follows} Pengikut",
+                    "${profile.follows} Mengikuti",
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.black,

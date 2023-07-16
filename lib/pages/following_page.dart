@@ -2,20 +2,58 @@ import 'package:flutter/material.dart';
 import 'package:mini_sosmed/components/minsos_bottom_app_bar.dart';
 import 'package:mini_sosmed/components/person_box.dart';
 import 'package:mini_sosmed/components/profile_widget.dart';
-import 'package:mini_sosmed/pages/home_page.dart';
-import 'package:mini_sosmed/pages/login_page.dart';
-import 'package:mini_sosmed/pages/profile_page.dart';
+import 'package:mini_sosmed/controller/UserController.dart';
+import 'package:mini_sosmed/model/profile.dart';
+import 'package:mini_sosmed/model/users.dart';
 
 class FollowingPage extends StatefulWidget {
-  const FollowingPage({super.key});
+  const FollowingPage({super.key, required this.username});
+  final String username;
 
   @override
-  State<FollowingPage> createState() => _FollowPageSingtate();
+  State<FollowingPage> createState() => _FollowingPageState();
 }
 
-class _FollowPageSingtate extends State<FollowingPage> {
+class _FollowingPageState extends State<FollowingPage> {
   bool showBottomAppBar = false;
+  final userContoller = UserContoller();
+  List<Users> users = [];
+  Profile? profile;
+
+  Future<dynamic> fetchFollowing() async {
+    try {
+      List<Users> fetchUser =
+          await userContoller.userFollowing(widget.username);
+      setState(() {
+        users = fetchUser;
+      });
+    } catch (error) {
+      print('Error fetching data: $error');
+    }
+  }
+
+  Future<void> fetchProfile([String? username]) async {
+    try {
+      Profile fetchProfileData =
+          await userContoller.profileUser(username ?? widget.username);
+      setState(() {
+        profile = fetchProfileData;
+        // print(profile);
+      });
+    } catch (e) {
+      // print("Error fetching data: $e");
+      throw Exception("Error fetching data: $e");
+    }
+  }
+
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchFollowing();
+    fetchProfile();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -49,32 +87,22 @@ class _FollowPageSingtate extends State<FollowingPage> {
             : null,
         automaticallyImplyLeading: false,
       ),
-      body: ListView(
-        children: [
-          // ProfileWidget(),
-          SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Mengikuti 65",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(height: 15),
-                // PersonBox(),
-                // PersonBox(),
-                // PersonBox(),
-                // PersonBox(),
-                // PersonBox(),
-              ],
-            ),
-          ),
-        ],
+      body: ListView.builder(
+        itemCount: users.length + 1,
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return profile != null
+                ? Column(
+                    children: [
+                      ProfileWidget(profile: profile!),
+                    ],
+                  )
+                : SizedBox();
+          } else {
+            final user = users[index - 1];
+            return PersonBox(user: user, fetchData: fetchFollowing);
+          }
+        },
       ),
     );
   }
