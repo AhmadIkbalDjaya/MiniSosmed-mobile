@@ -92,7 +92,7 @@ class ProfileWidget extends StatelessWidget {
             ],
           ),
           SizedBox(height: 5),
-          profile.id.toString() == Auth.user_id
+          profile.id.toString() == Auth.userId
               ? Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ElevatedButton(

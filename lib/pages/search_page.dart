@@ -227,14 +227,11 @@ class _SearchPageState extends State<SearchPage> {
       body: ListView.builder(
         itemCount: users.length,
         itemBuilder: (context, index) {
-          // print(users);
           final user = users[index];
-          // return Text("${user.username}");
           return PersonBox(
             user: user,
             fetchData: fetchSearchUser,
           );
-          // return Coba(user: user);
         },
       ),
     );

@@ -10,8 +10,6 @@ import 'package:mini_sosmed/components/profile_widget.dart';
 import 'package:mini_sosmed/controller/UserController.dart';
 import 'package:mini_sosmed/model/posts.dart';
 import 'package:mini_sosmed/model/profile.dart';
-import 'package:mini_sosmed/pages/home_page.dart';
-import 'package:mini_sosmed/pages/login_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key, required this.username});
@@ -24,7 +22,6 @@ class _ProfilePageState extends State<ProfilePage> {
   bool showBottomAppBar = false;
   final userController = UserContoller();
   Profile? profile;
-  // final String username = widget.username;
   List<Posts> posts = [];
 
   Future<void> fetchUserPost([String? username]) async {
@@ -46,9 +43,10 @@ class _ProfilePageState extends State<ProfilePage> {
     fetchUserPost(widget.username);
   }
 
-  Future<void> fetchProfile(String username) async {
+  Future<void> fetchProfile([String? username]) async {
     try {
-      Profile fetchProfileData = await userController.profileUser(username);
+      Profile fetchProfileData =
+          await userController.profileUser(username ?? widget.username);
       setState(() {
         profile = fetchProfileData;
         // print(profile);
@@ -101,11 +99,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       ProfileWidget(profile: profile!),
                       SizedBox(height: 25),
-                      BioBox(profile: profile!),
+                      BioBox(profile: profile!, fetchData: fetchProfile),
                       SizedBox(height: 10),
                       AboutUs(),
                       SizedBox(height: 50),
-                      profile!.id.toString() == Auth.user_id
+                      profile!.id.toString() == Auth.userId
                           ? CreatePostBox(fetchPost: fetchUserPost)
                           : SizedBox(),
                     ],

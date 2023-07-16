@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/controller/PostContoller.dart';
-import 'package:mini_sosmed/pages/home_page.dart';
 
 class CreatePostBox extends StatefulWidget {
   CreatePostBox({super.key, required this.fetchPost});
@@ -98,7 +97,9 @@ class _CreatePostBoxState extends State<CreatePostBox> {
                             children: [
                               Row(
                                 children: [
-                                  CircleAvatar(),
+                                  CircleAvatar(
+                                    radius: 15,
+                                  ),
                                   SizedBox(width: 10),
                                   Expanded(
                                     child: Text("${Auth.name}"),
@@ -111,7 +112,7 @@ class _CreatePostBoxState extends State<CreatePostBox> {
                               TextField(
                                 controller: bodyController,
                                 keyboardType: TextInputType.multiline,
-                                maxLines: null,
+                                maxLines: 3,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5),

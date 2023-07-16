@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/controller/LoginRegisController.dart';
-import 'package:mini_sosmed/pages/home_page.dart';
 import 'package:mini_sosmed/pages/login_page.dart';
 
 class RegisPage extends StatefulWidget {
@@ -98,13 +96,18 @@ class _RegisPageState extends State<RegisPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
                     ),
-                    prefixIcon: IconButton(
+                    suffix: IconButton(
                       onPressed: () {
                         setState(() {
                           showPass = !showPass;
                         });
                       },
-                      icon: Icon(Icons.remove_red_eye_outlined),
+                      icon: Icon(
+                        showPass
+                            ? Icons.remove_red_eye
+                            : Icons.remove_red_eye_outlined,
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                 ),

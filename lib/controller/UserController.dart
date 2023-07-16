@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/model/posts.dart';
@@ -69,6 +68,25 @@ class UserContoller {
       return posts;
     } else {
       throw Exception('Failed to fetch data');
+    }
+  }
+
+  Future<dynamic> updateBio(
+      String birthday, String gender, String address) async {
+    var url = Uri.parse("${link}/profile/updateBio");
+    var bodyUpdate = {
+      "birthday": birthday,
+      "genre": gender,
+      "address": address
+    };
+    var response = await http.post(url, body: bodyUpdate, headers: {
+      HttpHeaders.acceptHeader: "application/json",
+      HttpHeaders.authorizationHeader: "Bearer ${Auth.accessToken}",
+    });
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

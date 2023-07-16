@@ -121,7 +121,7 @@ class _PostBoxState extends State<PostBox> {
                     ],
                   ),
                 ),
-                post.userId.toString() == Auth.user_id
+                post.userId.toString() == Auth.userId
                     ? IconButton(
                         icon: Icon(Icons.more_horiz),
                         onPressed: () {

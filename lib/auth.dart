@@ -1,19 +1,19 @@
 class Auth {
   static String? accessToken;
-  static String? user_id;
+  static String? userId;
   static String? name;
   static String? username;
   static String? profile_image;
 
   static void setAuth(
     String token,
-    String user_id,
+    String userId,
     String name,
     String username,
     String profile_image,
   ) {
     Auth.accessToken = token;
-    Auth.user_id = user_id;
+    Auth.userId = userId;
     Auth.name = name;
     Auth.username = username;
     Auth.profile_image = profile_image;
@@ -21,7 +21,7 @@ class Auth {
 
   static void resetAuth() {
     Auth.accessToken = null;
-    Auth.user_id = null;
+    Auth.userId = null;
     Auth.name = null;
     Auth.username = null;
     Auth.profile_image = null;

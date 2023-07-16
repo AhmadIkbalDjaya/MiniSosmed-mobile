@@ -73,7 +73,7 @@ class _CommentBoxState extends State<CommentBox> {
               ],
             ),
           ),
-          widget.comment.userId.toString() == Auth.user_id
+          widget.comment.userId.toString() == Auth.userId
               ? IconButton(
                   onPressed: () {
                     showBottomSheet(

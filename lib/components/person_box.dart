@@ -70,7 +70,7 @@ class PersonBox extends StatelessWidget {
             ],
           ),
           SizedBox(height: 5),
-          user.id.toString() != Auth.user_id
+          user.id.toString() != Auth.userId
               ? ElevatedButton(
                   onPressed: () {
                     follow(user.username.toString());
