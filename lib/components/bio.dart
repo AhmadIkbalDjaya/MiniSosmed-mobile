@@ -53,7 +53,9 @@ class _BioBoxState extends State<BioBox> {
     addressController.text =
         widget.profile.address != null ? widget.profile.address.toString() : '';
     gender = widget.profile.gender.toString();
-    birthday = DateTime.parse(widget.profile.birthday.toString());
+    if (widget.profile.birthday != null) {
+      birthday = DateTime.parse(widget.profile.birthday.toString());
+    }
   }
 
   @override
@@ -136,7 +138,9 @@ class _BioBoxState extends State<BioBox> {
                       ),
                     ),
                     Text(
-                      "${widget.profile.birthday}",
+                      widget.profile.gender != null
+                          ? "${widget.profile.birthday}"
+                          : "Belum Ditambahkan",
                       style: TextStyle(
                         fontSize: 16,
                       ),
@@ -165,7 +169,9 @@ class _BioBoxState extends State<BioBox> {
                       ),
                     ),
                     Text(
-                      "${widget.profile.gender}",
+                      widget.profile.gender != null
+                          ? "${widget.profile.gender}"
+                          : "Belum Ditambahkan",
                       style: TextStyle(
                         fontSize: 16,
                       ),

@@ -6,14 +6,14 @@ import 'package:mini_sosmed/pages/home_page.dart';
 import 'package:mini_sosmed/pages/login_page.dart';
 import 'package:mini_sosmed/pages/profile_page.dart';
 
-class FollowPage extends StatefulWidget {
-  const FollowPage({super.key});
+class FollowingPage extends StatefulWidget {
+  const FollowingPage({super.key});
 
   @override
-  State<FollowPage> createState() => _FollowPageState();
+  State<FollowingPage> createState() => _FollowPageSingtate();
 }
 
-class _FollowPageState extends State<FollowPage> {
+class _FollowPageSingtate extends State<FollowingPage> {
   bool showBottomAppBar = false;
   @override
   Widget build(BuildContext context) {

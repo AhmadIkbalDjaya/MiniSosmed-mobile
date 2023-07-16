@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/model/profile.dart';
-import 'package:mini_sosmed/pages/follow_page.dart';
+import 'package:mini_sosmed/pages/following_page.dart';
 import 'package:mini_sosmed/pages/followers_page.dart';
 
 class ProfileWidget extends StatelessWidget {
@@ -55,7 +55,7 @@ class ProfileWidget extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => FollowPage(),
+                        builder: (context) => FollowingPage(),
                       ),
                     );
                   },
