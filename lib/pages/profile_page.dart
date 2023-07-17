@@ -60,8 +60,8 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 13, 110, 253),
-        title: Text(
+        backgroundColor: const Color.fromARGB(255, 13, 110, 253),
+        title: const Text(
           "Minsos",
           style: TextStyle(
             fontWeight: FontWeight.w400,
@@ -76,16 +76,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 showBottomAppBar = !showBottomAppBar;
                 setState(() {});
               },
-              icon: Icon(
-                Icons.menu,
-              ),
+              icon: const Icon(Icons.menu),
             ),
           ),
         ],
         bottom: showBottomAppBar
             ? PreferredSize(
+                preferredSize: const Size.fromHeight(175),
                 child: MinsosBottomAppBar(),
-                preferredSize: Size.fromHeight(175),
               )
             : null,
         automaticallyImplyLeading: false,
@@ -98,17 +96,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 ? Column(
                     children: [
                       ProfileWidget(profile: profile!),
-                      SizedBox(height: 25),
+                      const SizedBox(height: 25),
                       BioBox(profile: profile!, fetchData: fetchProfile),
-                      SizedBox(height: 10),
-                      AboutUs(),
-                      SizedBox(height: 50),
+                      const SizedBox(height: 10),
+                      const AboutUs(),
+                      const SizedBox(height: 50),
                       profile!.id.toString() == Auth.userId
                           ? CreatePostBox(fetchPost: fetchUserPost)
-                          : SizedBox(),
+                          : const SizedBox(),
                     ],
                   )
-                : SizedBox();
+                : const SizedBox();
           } else {
             final post = posts[index - 1];
             return PostBox(post: post, fetchPost: fetchUserPost);

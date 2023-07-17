@@ -16,7 +16,7 @@ class MinsosBottomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
           Row(
@@ -27,7 +27,7 @@ class MinsosBottomAppBar extends StatelessWidget {
                   child: TextField(
                     controller: searchController,
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(
+                      contentPadding: const EdgeInsets.symmetric(
                         horizontal: 15,
                         vertical: 0,
                       ),
@@ -41,14 +41,15 @@ class MinsosBottomAppBar extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 5),
+              const SizedBox(width: 5),
               OutlinedButton(
                 onPressed: () {
                   if (searchController.text == '') {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(title: Text("Search wajib di isi"));
+                        return const AlertDialog(
+                            title: Text("Search wajib di isi"));
                       },
                     );
                   } else {
@@ -62,15 +63,16 @@ class MinsosBottomAppBar extends StatelessWidget {
                     // SearchPage(query: searchController.text);
                   }
                 },
-                child: Text("Search"),
+                child: const Text("Search"),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.white, // Warna teks putih
-                  side: BorderSide(color: Colors.white), // Border warna putih
+                  side: const BorderSide(
+                      color: Colors.white), // Border warna putih
                 ),
               )
             ],
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -80,7 +82,7 @@ class MinsosBottomAppBar extends StatelessWidget {
                 ),
               );
             },
-            child: Row(
+            child: const Row(
               children: [
                 Text(
                   'Home',
@@ -98,7 +100,7 @@ class MinsosBottomAppBar extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -110,7 +112,7 @@ class MinsosBottomAppBar extends StatelessWidget {
                 ),
               );
             },
-            child: Row(
+            child: const Row(
               children: [
                 Text(
                   'Profile',
@@ -128,7 +130,7 @@ class MinsosBottomAppBar extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           GestureDetector(
             onTap: () {
               loginController.logout();
@@ -136,11 +138,11 @@ class MinsosBottomAppBar extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => LoginPage(),
+                  builder: (context) => const LoginPage(),
                 ),
               );
             },
-            child: Row(
+            child: const Row(
               children: [
                 Text(
                   'Logout',
@@ -158,7 +160,7 @@ class MinsosBottomAppBar extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
         ],
       ),
     );

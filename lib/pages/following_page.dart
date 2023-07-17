@@ -57,8 +57,8 @@ class _FollowingPageState extends State<FollowingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 13, 110, 253),
-        title: Text(
+        backgroundColor: const Color.fromARGB(255, 13, 110, 253),
+        title: const Text(
           "Minsos",
           style: TextStyle(
             fontWeight: FontWeight.w400,
@@ -73,16 +73,14 @@ class _FollowingPageState extends State<FollowingPage> {
                 showBottomAppBar = !showBottomAppBar;
                 setState(() {});
               },
-              icon: Icon(
-                Icons.menu,
-              ),
+              icon: const Icon(Icons.menu),
             ),
           ),
         ],
         bottom: showBottomAppBar
             ? PreferredSize(
+                preferredSize: const Size.fromHeight(175),
                 child: MinsosBottomAppBar(),
-                preferredSize: Size.fromHeight(175),
               )
             : null,
         automaticallyImplyLeading: false,
@@ -97,7 +95,7 @@ class _FollowingPageState extends State<FollowingPage> {
                       ProfileWidget(profile: profile!),
                     ],
                   )
-                : SizedBox();
+                : const SizedBox();
           } else {
             final user = users[index - 1];
             return PersonBox(user: user, fetchData: fetchFollowing);

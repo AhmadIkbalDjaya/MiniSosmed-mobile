@@ -3,6 +3,7 @@ import 'package:mini_sosmed/auth.dart';
 import 'package:mini_sosmed/components/comment_box.dart';
 import 'package:mini_sosmed/controller/PostContoller.dart';
 import 'package:mini_sosmed/model/posts.dart';
+import 'package:mini_sosmed/pages/profile_page.dart';
 
 class PostBox extends StatefulWidget {
   const PostBox({super.key, required this.post, required this.fetchPost});
@@ -69,7 +70,7 @@ class _PostBoxState extends State<PostBox> {
   Widget build(BuildContext context) {
     final Posts post = widget.post;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 15),
+      margin: const EdgeInsets.symmetric(vertical: 15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -92,26 +93,26 @@ class _PostBoxState extends State<PostBox> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    // Navigator.pushReplacement(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => ProfilePage(
-                    //       username: "${post.username}",
-                    //     ),
-                    //   ),
-                    // );
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProfilePage(
+                          username: post.username.toString(),
+                        ),
+                      ),
+                    );
                   },
                   child: Row(
                     children: [
                       CircleAvatar(),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("${post.name}"),
                           Text(
                             "${post.updatedAt}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.grey,
                             ),
@@ -123,7 +124,7 @@ class _PostBoxState extends State<PostBox> {
                 ),
                 post.userId.toString() == Auth.userId
                     ? IconButton(
-                        icon: Icon(Icons.more_horiz),
+                        icon: const Icon(Icons.more_horiz),
                         onPressed: () {
                           showBottomSheet(
                             context: context,
@@ -142,7 +143,7 @@ class _PostBoxState extends State<PostBox> {
                                     ),
                                   ),
                                   Container(
-                                    padding: EdgeInsets.only(
+                                    padding: const EdgeInsets.only(
                                         left: 15,
                                         right: 15,
                                         bottom: 15,
@@ -156,7 +157,7 @@ class _PostBoxState extends State<PostBox> {
                                           blurRadius: 5,
                                         ),
                                       ],
-                                      borderRadius: BorderRadius.only(
+                                      borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(10),
                                         topRight: Radius.circular(10),
                                       ),
@@ -168,7 +169,8 @@ class _PostBoxState extends State<PostBox> {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Container(
-                                          margin: EdgeInsets.only(bottom: 5),
+                                          margin:
+                                              const EdgeInsets.only(bottom: 5),
                                           width: 50,
                                           height: 5,
                                           decoration: BoxDecoration(
@@ -184,7 +186,8 @@ class _PostBoxState extends State<PostBox> {
                                               builder: (context) => Dialog(
                                                 child: Container(
                                                   height: 350,
-                                                  padding: EdgeInsets.symmetric(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
                                                       vertical: 10,
                                                       horizontal: 15),
                                                   child: Column(
@@ -200,7 +203,7 @@ class _PostBoxState extends State<PostBox> {
                                                                 MainAxisAlignment
                                                                     .spaceBetween,
                                                             children: [
-                                                              Text(
+                                                              const Text(
                                                                 "Edit Postingan",
                                                                 style:
                                                                     TextStyle(
@@ -213,14 +216,15 @@ class _PostBoxState extends State<PostBox> {
                                                                           context)
                                                                       .pop();
                                                                 },
-                                                                icon: Icon(
+                                                                icon:
+                                                                    const Icon(
                                                                   Icons.close,
                                                                   size: 20,
                                                                 ),
                                                               ),
                                                             ],
                                                           ),
-                                                          Divider(),
+                                                          const Divider(),
                                                         ],
                                                       ),
                                                       // body
@@ -229,7 +233,7 @@ class _PostBoxState extends State<PostBox> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Row(
+                                                          const Row(
                                                             children: [
                                                               CircleAvatar(),
                                                               SizedBox(
@@ -240,10 +244,12 @@ class _PostBoxState extends State<PostBox> {
                                                               ),
                                                             ],
                                                           ),
-                                                          SizedBox(height: 10),
-                                                          Text(
+                                                          const SizedBox(
+                                                              height: 10),
+                                                          const Text(
                                                               "Apa yang sedang anda pikirkan?"),
-                                                          SizedBox(height: 10),
+                                                          const SizedBox(
+                                                              height: 10),
                                                           TextField(
                                                             controller:
                                                                 bodyController,
@@ -262,14 +268,16 @@ class _PostBoxState extends State<PostBox> {
                                                               ),
                                                             ),
                                                           ),
-                                                          SizedBox(height: 10),
-                                                          Text("Upload Gambar"),
+                                                          const SizedBox(
+                                                              height: 10),
+                                                          const Text(
+                                                              "Upload Gambar"),
                                                         ],
                                                       ),
                                                       // footer
                                                       Column(
                                                         children: [
-                                                          Divider(),
+                                                          const Divider(),
                                                           Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
@@ -281,16 +289,16 @@ class _PostBoxState extends State<PostBox> {
                                                                           context)
                                                                       .pop();
                                                                 },
-                                                                child: Text(
-                                                                    "Close"),
                                                                 style: ElevatedButton
                                                                     .styleFrom(
                                                                   backgroundColor:
                                                                       Colors
                                                                           .grey,
                                                                 ),
+                                                                child: const Text(
+                                                                    "Close"),
                                                               ),
-                                                              SizedBox(
+                                                              const SizedBox(
                                                                   width: 10),
                                                               ElevatedButton(
                                                                 onPressed: () {
@@ -309,7 +317,7 @@ class _PostBoxState extends State<PostBox> {
                                                                   widget
                                                                       .fetchPost();
                                                                 },
-                                                                child: Text(
+                                                                child: const Text(
                                                                     "Edit"),
                                                               ),
                                                             ],
@@ -323,13 +331,13 @@ class _PostBoxState extends State<PostBox> {
                                             );
                                           },
                                           child: Container(
-                                            padding: EdgeInsets.all(8),
+                                            padding: const EdgeInsets.all(8),
                                             decoration: BoxDecoration(
                                               color: Colors.grey[100],
                                               borderRadius:
                                                   BorderRadius.circular(5),
                                             ),
-                                            child: Row(
+                                            child: const Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
@@ -346,13 +354,13 @@ class _PostBoxState extends State<PostBox> {
                                             Navigator.pop(context);
                                           },
                                           child: Container(
-                                            padding: EdgeInsets.all(8),
+                                            padding: const EdgeInsets.all(8),
                                             decoration: BoxDecoration(
                                               color: Colors.grey[100],
                                               borderRadius:
                                                   BorderRadius.circular(5),
                                             ),
-                                            child: Row(
+                                            child: const Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
@@ -379,7 +387,7 @@ class _PostBoxState extends State<PostBox> {
                           );
                         },
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
               ],
             ),
           ),
@@ -392,7 +400,7 @@ class _PostBoxState extends State<PostBox> {
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                 child: Text(
                   "${post.body}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                   ),
                 ),
@@ -432,7 +440,7 @@ class _PostBoxState extends State<PostBox> {
                   },
                   child: Row(
                     children: [
-                      Icon(Icons.comment_outlined),
+                      const Icon(Icons.comment_outlined),
                       Text(" ${post.commentCount} Comment"),
                     ],
                   ),
@@ -459,33 +467,17 @@ class _PostBoxState extends State<PostBox> {
                                 .toList() ??
                             [],
                       ),
-
-                      // child: ListView.builder(
-                      //   itemCount: post.commentCount,
-                      //   itemBuilder: (context, index) {
-                      //     final comment = post.comment[index];
-                      //     return CommentBox(comment: comment);
-                      //   },
-                      // ),
-
-                      // ListView(
-                      //   children: [
-                      //     CommentBox(),
-                      //     CommentBox(),
-                      //     CommentBox(),
-                      //   ],
-                      // ),
                     ),
                   ),
                   // comment form
                   Container(
-                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                    padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
                     child: Row(
                       children: [
                         CircleAvatar(
                           radius: 20,
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Expanded(
                           child: SizedBox(
                             height: 30,
@@ -493,7 +485,7 @@ class _PostBoxState extends State<PostBox> {
                               // keyboardType: TextInputType.
                               controller: commentController,
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(
+                                contentPadding: const EdgeInsets.symmetric(
                                   vertical: 0,
                                   horizontal: 15,
                                 ),
@@ -505,7 +497,7 @@ class _PostBoxState extends State<PostBox> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         SizedBox(
                           height: 30,
                           child: ElevatedButton(
@@ -513,7 +505,7 @@ class _PostBoxState extends State<PostBox> {
                               commentPost(post.id.toString());
                               widget.fetchPost();
                             },
-                            child: Text("Comen"),
+                            child: const Text("Comen"),
                           ),
                         ),
                       ],

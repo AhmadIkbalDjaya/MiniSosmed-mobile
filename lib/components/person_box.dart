@@ -14,15 +14,15 @@ class PersonBox extends StatelessWidget {
     try {
       await userController.followUser(username);
     } catch (e) {
-      print("Error deleting Post: $e");
+      throw Exception('Error deleting Post: $e');
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),
@@ -39,7 +39,7 @@ class PersonBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircleAvatar(radius: 25),
-              SizedBox(width: 15),
+              const SizedBox(width: 15),
               Flexible(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,20 +56,20 @@ class PersonBox extends StatelessWidget {
                       },
                       child: Text(
                         "${user.name}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text("${user.followers} Pengikut"),
                   ],
                 ),
               ),
             ],
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           user.id.toString() != Auth.userId
               ? ElevatedButton(
                   onPressed: () {
@@ -81,7 +81,7 @@ class PersonBox extends StatelessWidget {
                     minimumSize: Size(double.infinity, 35),
                   ),
                 )
-              : SizedBox(),
+              : const SizedBox(),
         ],
       ),
     );

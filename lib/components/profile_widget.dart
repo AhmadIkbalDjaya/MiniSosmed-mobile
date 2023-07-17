@@ -32,19 +32,19 @@ class ProfileWidget extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           CircleAvatar(
             radius: 35,
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(
             "${profile.name}",
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -62,14 +62,14 @@ class ProfileWidget extends StatelessWidget {
                   },
                   child: Text(
                     "${profile.followers} Pengikutt",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Colors.black,
                     ),
                   ),
                 ),
               ),
-              SizedBox(width: 25),
+              const SizedBox(width: 25),
               SizedBox(
                 height: 25,
                 child: OutlinedButton(
@@ -84,7 +84,7 @@ class ProfileWidget extends StatelessWidget {
                   },
                   child: Text(
                     "${profile.follows} Mengikuti",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Colors.black,
                     ),
@@ -93,7 +93,7 @@ class ProfileWidget extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           profile.id.toString() == Auth.userId
               ? Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -105,7 +105,7 @@ class ProfileWidget extends StatelessWidget {
                     ),
                   ),
                 )
-              : SizedBox(),
+              : const SizedBox(),
         ],
       ),
     );

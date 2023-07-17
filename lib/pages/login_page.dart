@@ -94,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Login",
@@ -110,8 +110,8 @@ class _LoginPageState extends State<LoginPage> {
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                    label: Text("Email"),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                    label: const Text("Email"),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
                     ),
@@ -124,8 +124,8 @@ class _LoginPageState extends State<LoginPage> {
                   textInputAction: TextInputAction.done,
                   obscureText: showPass,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                    label: Text("Password"),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                    label: const Text("Password"),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
                     ),
@@ -148,24 +148,24 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     login();
                   },
-                  child: Text(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 48),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    backgroundColor: const Color.fromARGB(255, 13, 109, 253),
+                  ),
+                  child: const Text(
                     "Login",
                     style: TextStyle(
                       fontSize: 18,
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 48),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    backgroundColor: Color.fromARGB(255, 13, 109, 253),
-                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Belum Punya Akun?",
                       style: TextStyle(
                         fontSize: 12,
@@ -173,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     GestureDetector(
-                      child: Text(
+                      child: const Text(
                         " Registrasi Sekarang",
                         style: TextStyle(
                           fontSize: 12,
@@ -184,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RegisPage(),
+                            builder: (context) => const RegisPage(),
                           ),
                         );
                       },

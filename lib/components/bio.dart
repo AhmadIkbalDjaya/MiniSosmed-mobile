@@ -31,7 +31,7 @@ class _BioBoxState extends State<BioBox> {
       widget.fetchData();
       showDialog(
         context: context,
-        builder: (context) => AlertDialog(
+        builder: (context) => const AlertDialog(
           title: Text("Biodata Berhasil Diperbaharui"),
         ),
       );
@@ -39,7 +39,7 @@ class _BioBoxState extends State<BioBox> {
       Navigator.of(context).pop();
       showDialog(
         context: context,
-        builder: (context) => AlertDialog(
+        builder: (context) => const AlertDialog(
           title: Text("Biodata Gagal Diperbaharui"),
         ),
       );
@@ -76,21 +76,21 @@ class _BioBoxState extends State<BioBox> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Biodata",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Column(
               children: [
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 80,
                       child: Text(
                         "Name",
@@ -99,7 +99,7 @@ class _BioBoxState extends State<BioBox> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                       child: Text(
                         ":",
@@ -110,16 +110,16 @@ class _BioBoxState extends State<BioBox> {
                     ),
                     Text(
                       "${widget.profile.name}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 80,
                       child: Text(
                         "Birthday",
@@ -128,7 +128,7 @@ class _BioBoxState extends State<BioBox> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                       child: Text(
                         ":",
@@ -141,16 +141,16 @@ class _BioBoxState extends State<BioBox> {
                       widget.profile.gender != null
                           ? "${widget.profile.birthday}"
                           : "Belum Ditambahkan",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 80,
                       child: Text(
                         "Gender",
@@ -159,7 +159,7 @@ class _BioBoxState extends State<BioBox> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                       child: Text(
                         ":",
@@ -172,16 +172,16 @@ class _BioBoxState extends State<BioBox> {
                       widget.profile.gender != null
                           ? "${widget.profile.gender}"
                           : "Belum Ditambahkan",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 80,
                       child: Text(
                         "Address",
@@ -190,7 +190,7 @@ class _BioBoxState extends State<BioBox> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                       child: Text(
                         ":",
@@ -203,20 +203,20 @@ class _BioBoxState extends State<BioBox> {
                       widget.profile.address != null
                           ? "${widget.profile.address}"
                           : "Belum ditambahkan",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
               ],
             ),
           ),
           widget.profile.id.toString() == Auth.userId
               ? ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 30),
+                    minimumSize: const Size(double.infinity, 30),
                   ),
                   onPressed: () {
                     showDialog(
@@ -236,7 +236,7 @@ class _BioBoxState extends State<BioBox> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
+                                          const Text(
                                             "Edit Biodata",
                                             style: TextStyle(
                                               fontSize: 18,
@@ -247,7 +247,7 @@ class _BioBoxState extends State<BioBox> {
                                             onPressed: () {
                                               Navigator.of(context).pop();
                                             },
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.clear_outlined,
                                               color: Colors.grey,
                                               size: 20,
@@ -255,7 +255,7 @@ class _BioBoxState extends State<BioBox> {
                                           ),
                                         ],
                                       ),
-                                      Divider(),
+                                      const Divider(),
                                     ],
                                   ),
                                   // body
@@ -266,25 +266,25 @@ class _BioBoxState extends State<BioBox> {
                                       Row(
                                         children: [
                                           CircleAvatar(radius: 20),
-                                          SizedBox(width: 10),
+                                          const SizedBox(width: 10),
                                           Text(
                                             "${Auth.name}",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: 15),
+                                      const SizedBox(height: 15),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text("Birthday"),
+                                          const Text("Birthday"),
                                           Container(
                                             height: 30,
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 5),
                                             decoration: BoxDecoration(
                                               border: Border.all(
@@ -302,7 +302,8 @@ class _BioBoxState extends State<BioBox> {
                                                 Text(
                                                     "${birthday.day}/${birthday.month}/${birthday.year}"),
                                                 IconButton(
-                                                  padding: EdgeInsets.all(0),
+                                                  padding:
+                                                      const EdgeInsets.all(0),
                                                   onPressed: () async {
                                                     final DateTime? selectDate =
                                                         await showDatePicker(
@@ -319,20 +320,21 @@ class _BioBoxState extends State<BioBox> {
                                                       );
                                                     }
                                                   },
-                                                  icon: Icon(Icons.date_range),
+                                                  icon: const Icon(
+                                                      Icons.date_range),
                                                 ),
                                               ],
                                             ),
                                           )
                                         ],
                                       ),
-                                      SizedBox(height: 15),
+                                      const SizedBox(height: 15),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text("Jenis Kelamin"),
-                                          SizedBox(height: 5),
+                                          const Text("Jenis Kelamin"),
+                                          const SizedBox(height: 5),
                                           SizedBox(
                                             height: 30,
                                             child:
@@ -341,8 +343,8 @@ class _BioBoxState extends State<BioBox> {
                                               items: listGender
                                                   .map(
                                                     (e) => DropdownMenuItem(
-                                                      child: Text("${e}"),
                                                       value: e as String,
+                                                      child: Text(e),
                                                     ),
                                                   )
                                                   .toList(),
@@ -351,7 +353,7 @@ class _BioBoxState extends State<BioBox> {
                                                   gender = value!;
                                                 });
                                               },
-                                              decoration: InputDecoration(
+                                              decoration: const InputDecoration(
                                                 contentPadding:
                                                     EdgeInsets.symmetric(
                                                         horizontal: 5),
@@ -361,20 +363,20 @@ class _BioBoxState extends State<BioBox> {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: 15),
+                                      const SizedBox(height: 15),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text("Address"),
-                                          SizedBox(height: 5),
+                                          const Text("Address"),
+                                          const SizedBox(height: 5),
                                           SizedBox(
                                             height: 30,
                                             child: TextField(
                                               controller: addressController,
                                               decoration: InputDecoration(
                                                 contentPadding:
-                                                    EdgeInsets.symmetric(
+                                                    const EdgeInsets.symmetric(
                                                   horizontal: 10,
                                                 ),
                                                 border: OutlineInputBorder(
@@ -391,7 +393,7 @@ class _BioBoxState extends State<BioBox> {
                                   // footer
                                   Column(
                                     children: [
-                                      Divider(),
+                                      const Divider(),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.end,
@@ -400,17 +402,17 @@ class _BioBoxState extends State<BioBox> {
                                             onPressed: () {
                                               Navigator.of(context).pop();
                                             },
-                                            child: Text("Cancel"),
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor: Colors.grey,
                                             ),
+                                            child: const Text("Cancel"),
                                           ),
-                                          SizedBox(width: 10),
+                                          const SizedBox(width: 10),
                                           ElevatedButton(
                                             onPressed: () {
                                               updateBio();
                                             },
-                                            child: Text("Edit"),
+                                            child: const Text("Edit"),
                                           ),
                                         ],
                                       ),
@@ -424,9 +426,9 @@ class _BioBoxState extends State<BioBox> {
                       ),
                     );
                   },
-                  child: Text("Edit Biodata"),
+                  child: const Text("Edit Biodata"),
                 )
-              : SizedBox(),
+              : const SizedBox(),
         ],
       ),
     );

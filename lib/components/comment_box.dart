@@ -164,9 +164,9 @@ class _CommentBoxState extends State<CommentBox> {
                       },
                     );
                   },
-                  icon: Icon(Icons.more_horiz),
+                  icon: const Icon(Icons.more_horiz),
                 )
-              : SizedBox(),
+              : const SizedBox(),
         ],
       ),
     );

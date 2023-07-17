@@ -44,13 +44,13 @@ class _CreatePostBoxState extends State<CreatePostBox> {
           ),
         ],
       ),
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CircleAvatar(),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Expanded(
             child: GestureDetector(
               onTap: () {
@@ -60,7 +60,7 @@ class _CreatePostBoxState extends State<CreatePostBox> {
                     child: Container(
                       height: 350,
                       padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                          const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -88,7 +88,7 @@ class _CreatePostBoxState extends State<CreatePostBox> {
                                   ),
                                 ],
                               ),
-                              Divider(),
+                              const Divider(),
                             ],
                           ),
                           // body
@@ -100,15 +100,15 @@ class _CreatePostBoxState extends State<CreatePostBox> {
                                   CircleAvatar(
                                     radius: 15,
                                   ),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
                                   Expanded(
                                     child: Text("${Auth.name}"),
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 10),
-                              Text("Apa yang sedang anda pikirkan?"),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
+                              const Text("Apa yang sedang anda pikirkan?"),
+                              const SizedBox(height: 10),
                               TextField(
                                 controller: bodyController,
                                 keyboardType: TextInputType.multiline,
@@ -119,14 +119,14 @@ class _CreatePostBoxState extends State<CreatePostBox> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10),
-                              Text("Upload Gambar"),
+                              const SizedBox(height: 10),
+                              const Text("Upload Gambar"),
                             ],
                           ),
                           // footer
                           Column(
                             children: [
-                              Divider(),
+                              const Divider(),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
@@ -134,19 +134,19 @@ class _CreatePostBoxState extends State<CreatePostBox> {
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text("Close"),
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.grey,
                                     ),
+                                    child: const Text("Close"),
                                   ),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
                                   ElevatedButton(
                                     onPressed: () {
                                       storePost();
                                       Navigator.of(context).pop();
                                       widget.fetchPost();
                                     },
-                                    child: Text("Posting"),
+                                    child: const Text("Posting"),
                                   ),
                                 ],
                               ),
@@ -163,10 +163,10 @@ class _CreatePostBoxState extends State<CreatePostBox> {
                   color: Colors.grey[100],
                   borderRadius: BorderRadius.circular(15),
                 ),
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Text(
                   "Apa yang anda pikirkan, ${Auth.name}?",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.grey,
                   ),
                 ),

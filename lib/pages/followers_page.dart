@@ -56,81 +56,54 @@ class _FollowersPageState extends State<FollowersPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 13, 110, 253),
-          title: Text(
-            "Minsos",
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-            ),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 13, 110, 253),
+        title: Text(
+          "Minsos",
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
           ),
-          centerTitle: false,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: IconButton(
-                onPressed: () {
-                  showBottomAppBar = !showBottomAppBar;
-                  setState(() {});
-                },
-                icon: Icon(
-                  Icons.menu,
-                ),
+        ),
+        centerTitle: false,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              onPressed: () {
+                showBottomAppBar = !showBottomAppBar;
+                setState(() {});
+              },
+              icon: Icon(
+                Icons.menu,
               ),
             ),
-          ],
-          bottom: showBottomAppBar
-              ? PreferredSize(
-                  child: MinsosBottomAppBar(),
-                  preferredSize: Size.fromHeight(175),
-                )
-              : null,
-          automaticallyImplyLeading: false,
-        ),
-        body: ListView.builder(
-          itemCount: users.length + 1,
-          itemBuilder: (context, index) {
-            if (index == 0) {
-              return profile != null
-                  ? Column(
+          ),
+        ],
+        bottom: showBottomAppBar
+            ? PreferredSize(
+                child: MinsosBottomAppBar(),
+                preferredSize: Size.fromHeight(175),
+              )
+            : null,
+        automaticallyImplyLeading: false,
+      ),
+      body: ListView.builder(
+        itemCount: users.length + 1,
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return profile != null
+                ? Column(
                     children: [
                       ProfileWidget(profile: profile!),
                     ],
                   )
-                  : SizedBox();
-            } else {
-              final user = users[index - 1];
-              return PersonBox(user: user, fetchData: fetchFollowers);
-            }
-          },
-        )
-        // ListView(
-        //   children: [
-        //     // ProfileWidget(),
-        //     SizedBox(height: 30),
-        //     Padding(
-        //       padding: const EdgeInsets.symmetric(horizontal: 10),
-        //       child: Column(
-        //         crossAxisAlignment: CrossAxisAlignment.start,
-        //         children: [
-        //           Text(
-        //             "Pengikut 665",
-        //             style: TextStyle(
-        //               fontSize: 20,
-        //               fontWeight: FontWeight.w500,
-        //             ),
-        //           ),
-        //           SizedBox(height: 15),
-        //           // PersonBox(),
-        //           // PersonBox(),
-        //           // PersonBox(),
-        //           // PersonBox(),
-        //           // PersonBox(),
-        //         ],
-        //       ),
-        //     ),
-        //   ],
-        // ),
-        );
+                : const SizedBox();
+          } else {
+            final user = users[index - 1];
+            return PersonBox(user: user, fetchData: fetchFollowers);
+          }
+        },
+      ),
+    );
   }
 }
